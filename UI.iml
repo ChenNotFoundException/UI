@@ -16,5 +16,9 @@
     <orderEntry type="library" name="jgoodies-forms-javadoc" level="project" />
     <orderEntry type="library" name="jgoodies-forms-javadoc (2)" level="project" />
     <orderEntry type="library" name="TableLayout-javadoc" level="project" />
+    <orderEntry type="library" name="jgoodies-common-javadoc (2)" level="project" />
+    <orderEntry type="library" name="jgoodies-forms-javadoc (3)" level="project" />
+    <orderEntry type="library" name="TableLayout-javadoc (2)" level="project" />
+    <orderEntry type="library" name="org-jdesktop-swingx" level="project" />
   </component>
 </module>

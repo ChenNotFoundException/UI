@@ -1,0 +1,176 @@
+JFDML JFormDesigner: "6.0.0.0.84" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq l {par l {comp panel3:::p::p, comp panel1:::p::p}, space :::x, par l {comp panel2::t:p::p, comp panel4::t:p::p}, space :p:15:p}, seq {par l {seq {par l {comp panel5:::p::p, comp panel6:::::x}, space s:::p, par l:::p {comp button1:::::x, comp button3:::::x}, space u::23:x}, seq {par l {seq l {comp panel7:::p::p, space s:::p, comp button5:::p::p}, seq {comp panel8:::p::p, space s:::p, comp button7:::p::p}, seq l {comp label4:::p::p, space :::p, comp label5:::p:54:p}}, space :::x}}, par l:::p {comp button2::::57:x, comp button4::::57:x, comp button6::::57:x, comp button8::::57:x}, space ::19:x}}}}"
+			"$verticalGroup": "par l {seq l {space :p::p, par l {comp panel1:::p::p, comp panel2:::p::p}, space :p:7:p, par l {comp panel3:::::x, seq {comp panel4:::p::p, space :0:0:x}}, space s::19:x, par l:::p {par b {comp button1::b::32:x, comp button2::b::32:x}, comp panel5:::::x}, space :::p, par t:::p {comp panel6::l:::x, comp button3::l:::x, comp button4::t:::x}, space :::p, par l {par b {comp button5::b:p:31:p, comp button6::b:p:31:p}, comp panel7::l:p::p}, space :::p, par l:::p {comp button7::l::38:x, comp button8::l:::x, comp panel8::l::38:x}, space :::p, par b {comp label4::b:p::p, comp label5::b:p::p}, space :p:25:p}}"
+		} ) {
+			name: "this"
+			"visible": true
+			"background": new java.awt.Color( 204, 255, 204, 255 )
+			"title": "控制面板"
+			"resizable": false
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, comp radioButton3:::::x, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :p:15:p, comp radioButton3:::p::p, space ::12:x}}"
+			} ) {
+				name: "panel1"
+				"background": &Color0 new java.awt.Color( 51, 153, 255, 255 )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton3"
+					"text": "总电源"
+					"background": &Color1 new java.awt.Color( 51, 153, 255, 255 )
+					"foreground": sfield java.awt.Color white
+					"font": &Font0 new java.awt.Font( "宋体", 1, 16 )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, comp radioButton4:::p::p, space :::x}}"
+				"$verticalGroup": "par l {seq t {space ::17:x, comp radioButton4:::p::p, space :p:12:p}}"
+			} ) {
+				name: "panel2"
+				"background": &Color2 new java.awt.Color( 51, 153, 255, 255 )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton4"
+					"text": "UV - 1"
+					"foreground": &Color3 new java.awt.Color( 255, 255, 255, 255 )
+					"background": &Color4 new java.awt.Color( 51, 153, 255, 255 )
+					"font": &Font1 new java.awt.Font( "宋体", 1, 16 )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space :::p, comp radioButton5::::77:x, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :p:14:p, comp radioButton5:::p::p, space :::x}}"
+			} ) {
+				name: "panel3"
+				"background": #Color0
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton5"
+					"text": "反射"
+					"background": #Color1
+					"foreground": sfield java.awt.Color white
+					"font": #Font0
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, comp radioButton6:::p::p, space :::x}}"
+				"$verticalGroup": "par l {seq l {space :p:15:p, comp radioButton6:::p::p, space ::14:x}}"
+			} ) {
+				name: "panel4"
+				"background": #Color2
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton6"
+					"text": "UV - 2"
+					"foreground": #Color3
+					"background": #Color4
+					"font": #Font1
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {comp label1::t:p:92:p}"
+				"$verticalGroup": "par l {seq l {space :::p, comp label1::::20:x, space :::p}}"
+			} ) {
+				name: "panel5"
+				"background": new java.awt.Color( 51, 153, 255, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "焦距"
+					"foreground": sfield java.awt.Color white
+					"font": new java.awt.Font( "宋体", 1, 16 )
+					"horizontalAlignment": 0
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space :0:0:x, comp label2:::p:92:p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp label2:::p::p, space :::x}}"
+			} ) {
+				name: "panel6"
+				"background": new java.awt.Color( 51, 153, 255, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "景深"
+					"foreground": sfield java.awt.Color white
+					"font": new java.awt.Font( "宋体", 1, 16 )
+					"horizontalAlignment": 0
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {comp label3::l::92:x}"
+				"$verticalGroup": "par l {seq t {space :::x, comp label3:::p::p, space :::p}}"
+			} ) {
+				name: "panel7"
+				"background": new java.awt.Color( 51, 153, 255, 255 )
+				"foreground": sfield java.awt.Color white
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "光圈"
+					"font": new java.awt.Font( "宋体", 1, 16 )
+					"foreground": sfield java.awt.Color white
+					"horizontalAlignment": 0
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {comp radioButton1::t::92:x}"
+				"$verticalGroup": "par l {seq t {space :::x, comp radioButton1:::p::p, space :p:15:p}}"
+			} ) {
+				name: "panel8"
+				"background": new java.awt.Color( 51, 153, 255, 255 )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton1"
+					"text": "步进"
+					"background": new java.awt.Color( 51, 153, 255, 255 )
+					"font": new java.awt.Font( "宋体", 1, 16 )
+					"foreground": sfield java.awt.Color white
+					"horizontalAlignment": 0
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": " 步进值为："
+				"font": new java.awt.Font( "宋体", 1, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "+"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "-"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "+"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button4"
+				"text": "-"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button5"
+				"text": "+"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button6"
+				"text": "-"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button7"
+				"text": "+"
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "button7MousePressed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button8"
+				"text": "-"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "0"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 270, 380 )
+		} )
+	}
+}

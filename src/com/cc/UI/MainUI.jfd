@@ -4,27 +4,27 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp toolBar1::::954:x, seq l {comp panel1:::p:132:p, space :0:822:x}}"
-			"$verticalGroup": "par l {seq l {comp toolBar1:::p::p, space :::p, comp panel1:::::x, space :::p}}"
+			"$horizontalGroup": "par l {comp toolBar1::::0:x, seq {comp panel1:::p:132:p, space :::p, comp panel:::::x, space :::p}}"
+			"$verticalGroup": "par l {seq l {comp toolBar1:::p::p, space :::p, par l {comp panel1:::p:554:p, comp panel:::::x}, space :::x}}"
 		} ) {
 			name: "this"
 			"title": "Tocan凝胶分析系统"
-			"alwaysOnTop": true
 			add( new FormContainer( "javax.swing.JToolBar", new FormLayoutManager( class javax.swing.JToolBar ) ) {
 				name: "toolBar1"
 				"alignmentY": 1.0f
 				"alignmentX": 1.0f
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "button1"
-					"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\IEDA_workspace\\UI\\src\\com\\cc\\UI\\icons\\Open.png" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/cc/UI/icons/Open.png" )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "button2"
-					"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\IEDA_workspace\\UI\\src\\com\\cc\\UI\\icons\\Save.png" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/cc/UI/icons/Save.png" )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "button3"
-					"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\IEDA_workspace\\UI\\src\\com\\cc\\UI\\icons\\Close.png" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/cc/UI/icons/Close.png" )
 				} )
 				add( new FormComponent( "javax.swing.JToolBar$Separator" ) {
 					name: "separator1"
@@ -87,8 +87,8 @@ new FormModel {
 				} )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {par l {comp label10::l:p:54:p, comp label11::l:p:66:p}, space :::p, par l {comp label12:::::x, seq l {comp label13:::p:30:p, space :::p, comp label14:::p:6:p, space :::x}}}, seq t {space :0:0:x, par l {seq t {comp label1:::p::p, space :p:75:p}, comp separator6::t:p:133:p}}, seq {par l {seq l {comp label7:::p:84:p, space :::p, comp label8:::p::p, space :::p, comp label9:::::x}, seq {par l {seq l {comp label5:::p:84:p, space u:::p, comp label6:::p:31:p}, seq l {par t {comp comboBox1:::p:67:p, comp label3:::p:90:p}, space :::p, comp label4:::p:31:p}, comp label2::l:p:125:p, par t:l::p {comp panel3::l:::x, comp panel2::l:::x, comp panel4::l:::x}}, space :0:0:x}}, space :::p}}"
-				"$verticalGroup": "par l {seq {comp label1:::p:22:p, space :::p, comp label2:::p::p, space :::p, comp comboBox1:::p::p, space :::p, par b {comp label3::b:p:30:p, comp label4::b:p::p}, space :::p, par b {comp label5::b:p:30:p, comp label6::b:p::p}, space :::p, par b {comp label7::b:p:30:p, comp label8::b:p::p, comp label9::b:p::p}, space :::p, par b {comp label10::b:p::p, comp label12::b:p::p}, space :::p, par b {comp label11::b:p::p, comp label13::b:p::p, comp label14::b:p:21:p}, space :::p, comp separator6:::p:2:p, space u:::p, comp panel2:::p::p, space :p:2:p, comp panel3:::p:68:p, space :::p, comp panel4:::p::p, space ::75:x}}"
+				"$horizontalGroup": "par l {seq l {par l {comp label10::l:p:54:p, comp label11::l:p:66:p}, space :0:0:p, par l {comp label12:::::x, seq l {comp label13:::p:30:p, space :0:0:p, comp label14:::p:6:p, space :::x}}}, seq t {space :0:0:x, comp label1:::p::p, space :p:75:p}, seq {par l {comp label2::l:p:125:p, par t:l::p {comp panel2::l:::x, comp panel3::l:::x, comp panel4::l:::x}, seq l {par t:::p {comp label3:::::x, comp label5:::::x, seq l {comp label7:::p::p, space :::p}}, par l {comp label4:::p:43:p, comp label6:::p:37:p, seq {comp label8:::p::p, space :0:0:p, comp label9:::::x}}}}, space :::p}, seq l {space :::p, comp comboBox1:::p:67:p, space :::x}, comp separator6::t:::x}"
+				"$verticalGroup": "par l {seq {comp label1:::p:22:p, space :::p, comp label2:::p::p, space :::p, comp comboBox1:::p::p, space :::p, par b {comp label3::b:p:30:p, comp label4::b:p::p}, space :::p, par b {comp label5::b:p:30:p, comp label6::b:p::p}, space :::p, par b {comp label8::b:p::p, comp label9::b:p::p, comp label7::b:p:30:p}, space :::p, par b {comp label10::b:p::p, comp label12::b:p::p}, space :::p, par b {comp label11::b:p::p, comp label13::b:p::p, comp label14::b:p:21:p}, space :::p, comp separator6:::p:2:p, space u:::p, comp panel2:::p::p, space :p:2:p, comp panel3:::p:68:p, space :p:2:p, comp panel4:::p::p, space :p:2:p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 204, 204, 204, 255 )
@@ -171,7 +171,7 @@ new FormModel {
 					"$verticalGroup": "par l {seq {comp label16:::p::p, space :::x, comp label17:::p::p, space :::p}}"
 				} ) {
 					name: "panel2"
-					"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( "分割精度" ), sfield com.jgoodies.forms.factories.Borders DLU2_BORDER )
+					"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( "分割精度" ), new javax.swing.border.EmptyBorder( 5, 5, 5, 5 ) )
 					"background": new java.awt.Color( 204, 204, 204, 255 )
 					add( new FormComponent( "com.jformdesigner.designer.wrapper.JGoodiesFormsLabel" ) {
 						name: "label16"
@@ -201,8 +201,8 @@ new FormModel {
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :::p, par l {comp comboBox2:::::x, seq {par l {comp label15:::p::p, comp label18::l:p::p}, space :0:0:x}}, space :::p}}"
-					"$verticalGroup": "par l {seq l {comp label15:::p::p, space :::p, comp comboBox2:::p::p, space :::p, comp label18:::p::p, space ::21:x}}"
+					"$horizontalGroup": "par l {seq t {space :::p, par l {comp comboBox2:::::x, comp scrollPane1::l:::x, seq {par l {comp label15:::p::p, comp label18::l:p::p}, space :0:0:x}}, space :::p}}"
+					"$verticalGroup": "par l {seq l {comp label15:::p::p, space :::p, comp comboBox2:::p::p, space :::p, comp label18:::p::p, space :::p, comp scrollPane1:::p::p, space ::42:x}}"
 				} ) {
 					name: "panel4"
 					"background": new java.awt.Color( 204, 204, 204, 255 )
@@ -218,6 +218,23 @@ new FormModel {
 						name: "label18"
 						"text": "操作日期："
 					} )
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						add( new FormComponent( "javax.swing.JTextPane" ) {
+							name: "operateTime"
+							"editable": false
+						} )
+					} )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space :::p, comp piclabel::::639:x}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp piclabel:::p:377:p, space :::p}}"
+			} ) {
+				name: "panel"
+				"background": new java.awt.Color( 204, 204, 204, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "piclabel"
 				} )
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
@@ -230,6 +247,7 @@ new FormModel {
 						name: "menuItem1"
 						"text": "打开"
 						"accelerator": static javax.swing.KeyStroke getKeyStroke( 79, 130, false )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem2"
@@ -244,6 +262,7 @@ new FormModel {
 						name: "menuItem4"
 						"text": "关闭"
 						"accelerator": static javax.swing.KeyStroke getKeyStroke( 78, 130, false )
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "closePicActionPerformed", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem5"
@@ -261,6 +280,7 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem8"
 						"text": "退出"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem8ActionPerformed", true ) )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "menu8"
@@ -449,6 +469,8 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JCheckBoxMenuItem" ) {
 						name: "checkBoxMenuItem1"
 						"text": "工具栏"
+						"selected": true
+						addEvent( new FormEvent( "java.awt.event.ItemListener", "itemStateChanged", "checkBoxMenuItem1ItemStateChanged", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JCheckBoxMenuItem" ) {
 						name: "checkBoxMenuItem2"
@@ -516,8 +538,8 @@ new FormModel {
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 5, 0 )
-			"size": new java.awt.Dimension( 970, 675 )
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 805, 650 )
 		} )
 	}
 }
