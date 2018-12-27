@@ -1,0 +1,523 @@
+JFDML JFormDesigner: "6.0.0.0.84" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp toolBar1::::954:x, seq l {comp panel1:::p:132:p, space :0:822:x}}"
+			"$verticalGroup": "par l {seq l {comp toolBar1:::p::p, space :::p, comp panel1:::::x, space :::p}}"
+		} ) {
+			name: "this"
+			"title": "Tocan凝胶分析系统"
+			"alwaysOnTop": true
+			add( new FormContainer( "javax.swing.JToolBar", new FormLayoutManager( class javax.swing.JToolBar ) ) {
+				name: "toolBar1"
+				"alignmentY": 1.0f
+				"alignmentX": 1.0f
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button1"
+					"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\IEDA_workspace\\UI\\src\\com\\cc\\UI\\icons\\Open.png" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button2"
+					"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\IEDA_workspace\\UI\\src\\com\\cc\\UI\\icons\\Save.png" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button3"
+					"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\IEDA_workspace\\UI\\src\\com\\cc\\UI\\icons\\Close.png" )
+				} )
+				add( new FormComponent( "javax.swing.JToolBar$Separator" ) {
+					name: "separator1"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button4"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button5"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button6"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JToolBar$Separator" ) {
+					name: "separator2"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button7"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button8"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button9"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JToolBar$Separator" ) {
+					name: "separator3"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button10"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button11"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button12"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JToolBar$Separator" ) {
+					name: "separator4"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button13"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button14"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JToolBar$Separator" ) {
+					name: "separator5"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {par l {comp label10::l:p:54:p, comp label11::l:p:66:p}, space :::p, par l {comp label12:::::x, seq l {comp label13:::p:30:p, space :::p, comp label14:::p:6:p, space :::x}}}, seq t {space :0:0:x, par l {seq t {comp label1:::p::p, space :p:75:p}, comp separator6::t:p:133:p}}, seq {par l {seq l {comp label7:::p:84:p, space :::p, comp label8:::p::p, space :::p, comp label9:::::x}, seq {par l {seq l {comp label5:::p:84:p, space u:::p, comp label6:::p:31:p}, seq l {par t {comp comboBox1:::p:67:p, comp label3:::p:90:p}, space :::p, comp label4:::p:31:p}, comp label2::l:p:125:p, par t:l::p {comp panel3::l:::x, comp panel2::l:::x, comp panel4::l:::x}}, space :0:0:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq {comp label1:::p:22:p, space :::p, comp label2:::p::p, space :::p, comp comboBox1:::p::p, space :::p, par b {comp label3::b:p:30:p, comp label4::b:p::p}, space :::p, par b {comp label5::b:p:30:p, comp label6::b:p::p}, space :::p, par b {comp label7::b:p:30:p, comp label8::b:p::p, comp label9::b:p::p}, space :::p, par b {comp label10::b:p::p, comp label12::b:p::p}, space :::p, par b {comp label11::b:p::p, comp label13::b:p::p, comp label14::b:p:21:p}, space :::p, comp separator6:::p:2:p, space u:::p, comp panel2:::p::p, space :p:2:p, comp panel3:::p:68:p, space :::p, comp panel4:::p::p, space ::75:x}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 204, 204, 204, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": " 初始泳道数："
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "comboBox1"
+					"prototypeDisplayValue": "4"
+					"model": new javax.swing.DefaultComboBoxModel {
+						selectedItem: "1"
+						addElement( "1" )
+						addElement( "2" )
+						addElement( "3" )
+						addElement( "4" )
+						addElement( "5" )
+						addElement( "6" )
+						addElement( "7" )
+						addElement( "8" )
+					}
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": " 分析泳道数："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": " 本 底 值："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "1"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": " 分析条带数："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "0"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"text": " 放大倍数："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label8"
+					"text": "1.00"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label9"
+					"text": "x"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label10"
+					"text": " 灰度值："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label11"
+					"text": " 相对浓度："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label12"
+					"text": "48"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label13"
+					"text": "18.82"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label14"
+					"text": "%"
+				} )
+				add( new FormComponent( "com.jformdesigner.designer.wrapper.JGoodiesFormsSeparator" ) {
+					name: "separator6"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {par l:::p {comp label16:::::x, comp label17:::::x}, space :p:76:p}}"
+					"$verticalGroup": "par l {seq {comp label16:::p::p, space :::x, comp label17:::p::p, space :::p}}"
+				} ) {
+					name: "panel2"
+					"border": new javax.swing.border.CompoundBorder( new javax.swing.border.TitledBorder( "分割精度" ), sfield com.jgoodies.forms.factories.Borders DLU2_BORDER )
+					"background": new java.awt.Color( 204, 204, 204, 255 )
+					add( new FormComponent( "com.jformdesigner.designer.wrapper.JGoodiesFormsLabel" ) {
+						name: "label16"
+						"textWithMnemonic": "水平"
+					} )
+					add( new FormComponent( "com.jformdesigner.designer.wrapper.JGoodiesFormsLabel" ) {
+						name: "label17"
+						"textWithMnemonic": "垂直"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {par l {comp radioButton1:::p:86:p, comp radioButton2:::p::p}, space :::x}}"
+					"$verticalGroup": "par l {seq l {space :0:0:x, comp radioButton1:::p::p, space :p:2:p, comp radioButton2:::p::p, space :p:92:p}}"
+				} ) {
+					name: "panel3"
+					"border": new javax.swing.border.TitledBorder( "自动提取" )
+					"background": new java.awt.Color( 204, 204, 204, 255 )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton1"
+						"text": "DNA"
+						"background": new java.awt.Color( 204, 204, 204, 255 )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton2"
+						"text": "Protein"
+						"background": new java.awt.Color( 204, 204, 204, 255 )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {space :::p, par l {comp comboBox2:::::x, seq {par l {comp label15:::p::p, comp label18::l:p::p}, space :0:0:x}}, space :::p}}"
+					"$verticalGroup": "par l {seq l {comp label15:::p::p, space :::p, comp comboBox2:::p::p, space :::p, comp label18:::p::p, space ::21:x}}"
+				} ) {
+					name: "panel4"
+					"background": new java.awt.Color( 204, 204, 204, 255 )
+					"border": new javax.swing.border.TitledBorder( "图像信息" )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label15"
+						"text": "操作人员："
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "comboBox2"
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label18"
+						"text": "操作日期："
+					} )
+				} )
+			} )
+			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
+				name: "menuBar1"
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu1"
+					"text": "文件(F)"
+					"mnemonic": 70
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem1"
+						"text": "打开"
+						"accelerator": static javax.swing.KeyStroke getKeyStroke( 79, 130, false )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem2"
+						"text": "保存"
+						"accelerator": static javax.swing.KeyStroke getKeyStroke( 83, 130, false )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem3"
+						"text": "另存为"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem4"
+						"text": "关闭"
+						"accelerator": static javax.swing.KeyStroke getKeyStroke( 78, 130, false )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem5"
+						"text": "打印"
+						"accelerator": static javax.swing.KeyStroke getKeyStroke( 80, 130, false )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem6"
+						"text": "打印预览"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem7"
+						"text": "打印设置"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem8"
+						"text": "退出"
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu8"
+						"text": "新建协议"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem10"
+							"text": "凝胶成像"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem11"
+							"text": "化学发光成像"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem12"
+							"text": "荧光发光成像"
+						} )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem13"
+						"text": "默认协议"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu2"
+					"text": "编辑标注(E)"
+					"mnemonic": 69
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem14"
+						"text": "剪切"
+						"accelerator": static javax.swing.KeyStroke getKeyStroke( 88, 130, false )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem15"
+						"text": "复制"
+						"accelerator": static javax.swing.KeyStroke getKeyStroke( 67, 130, false )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem16"
+						"text": "粘贴"
+						"accelerator": static javax.swing.KeyStroke getKeyStroke( 86, 130, false )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem17"
+						"text": "删除"
+						"accelerator": static javax.swing.KeyStroke getKeyStroke( 127, 0, false )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem18"
+						"text": "插入标注"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem19"
+						"text": "撤销"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu9"
+					"text": "图像采集"
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
+						name: "radioButtonMenuItem1"
+						"text": "系统启动/关闭"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
+						name: "radioButtonMenuItem2"
+						"text": "图像启动/关闭"
+					} )
+					add( new FormComponent( "javax.swing.JRadioButtonMenuItem" ) {
+						name: "radioButtonMenuItem3"
+						"text": "冻结/解冻"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem23"
+						"text": "抓取图像"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem24"
+						"text": "采集前图像调节"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem25"
+						"text": "采集设置"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem26"
+						"text": "视频源设置"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu3"
+					"text": "图像处理(P)"
+					"mnemonic": 80
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem27"
+						"text": "图像旋转"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem28"
+						"text": "图像平滑"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem29"
+						"text": "中值滤波"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem30"
+						"text": "亮度/对比度"
+					} )
+					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+						name: "menu10"
+						"text": "图像缩放"
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem31"
+							"text": "原始大小"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem32"
+							"text": "放大"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem33"
+							"text": "缩小"
+						} )
+						add( new FormComponent( "javax.swing.JMenuItem" ) {
+							name: "menuItem34"
+							"text": "适应窗口大小"
+						} )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu4"
+					"text": "分析(A)"
+					"mnemonic": 65
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem35"
+						"text": "剪切区域"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem36"
+						"text": "设置区域"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem37"
+						"text": "设置本底"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem38"
+						"text": "提取条带"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem39"
+						"text": "选择物体"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem40"
+						"text": "添加条带"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem41"
+						"text": "修正条带"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem42"
+						"text": "计算"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem43"
+						"text": "全部删除"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem44"
+						"text": "删除计算结果"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem45"
+						"text": "参数列表"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem46"
+						"text": "特定条带参数显示"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu5"
+					"text": "显示(V)"
+					"mnemonic": 86
+					add( new FormComponent( "javax.swing.JCheckBoxMenuItem" ) {
+						name: "checkBoxMenuItem1"
+						"text": "工具栏"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBoxMenuItem" ) {
+						name: "checkBoxMenuItem2"
+						"text": "状态栏"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBoxMenuItem" ) {
+						name: "checkBoxMenuItem3"
+						"text": "标注栏"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBoxMenuItem" ) {
+						name: "checkBoxMenuItem4"
+						"text": "OLE标注栏"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBoxMenuItem" ) {
+						name: "checkBoxMenuItem5"
+						"text": "分析栏"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBoxMenuItem" ) {
+						name: "checkBoxMenuItem6"
+						"text": "显示对象边界"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBoxMenuItem" ) {
+						name: "checkBoxMenuItem7"
+						"text": "显示标注"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBoxMenuItem" ) {
+						name: "checkBoxMenuItem8"
+						"text": "显示泳道"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBoxMenuItem" ) {
+						name: "checkBoxMenuItem9"
+						"text": "显示条带"
+					} )
+					add( new FormComponent( "javax.swing.JCheckBoxMenuItem" ) {
+						name: "checkBoxMenuItem10"
+						"text": "显示条带边界"
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem56"
+						"text": "刷新窗口"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu6"
+					"text": "设置(S)"
+					"mnemonic": 83
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem57"
+						"text": "操作员设置"
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
+					name: "menu7"
+					"text": "帮助(H)"
+					"mnemonic": 72
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem58"
+						"text": "帮助主题"
+						"accelerator": static javax.swing.KeyStroke getKeyStroke( 112, 0, false )
+					} )
+					add( new FormComponent( "javax.swing.JMenuItem" ) {
+						name: "menuItem59"
+						"text": "关于凝胶分析系统"
+					} )
+				} )
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 0 )
+			"size": new java.awt.Dimension( 970, 675 )
+		} )
+	}
+}
