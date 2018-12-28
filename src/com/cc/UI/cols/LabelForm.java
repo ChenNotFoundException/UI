@@ -26,7 +26,7 @@ public class LabelForm extends JDialog {
     }
 
     private void myInit() {
-        this.setIconImage(null);
+        //this.setIconImage(null);
         Icon icon = new ImageIcon("com/cc/UI/icons/choose.png");
         //button1.setIcon(icon);
     }

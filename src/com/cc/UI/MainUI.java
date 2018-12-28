@@ -1,20 +1,13 @@
 package com.cc.UI;
 
-import java.awt.event.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-
-import com.cc.UI.utils.FileUtils;
-import com.jgoodies.forms.factories.Borders;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
-
-import javax.swing.*;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import com.jgoodies.forms.factories.*;
+import com.jgoodies.forms.layout.*;
+import info.clearthought.layout.*;
+import org.jdesktop.swingx.*;
 
 /*
  * Created by JFormDesigner on Wed Dec 26 19:45:52 CST 2018
@@ -27,42 +20,24 @@ import java.util.Date;
  */
 public class MainUI extends JFrame {
     public MainUI() {
-    setVisible(true);
-    initComponents();
-    myInit();
+        initComponents();
     }
 
-    private JFileChooser chooser;
     private void button1ActionPerformed(ActionEvent e) {
-    // TODO add your code here
-        System.out.println("open");
-        String url = FileUtils.openFile();
-        ImageIcon image = new ImageIcon(url);
-        image.setImage(image.getImage().getScaledInstance(piclabel.getWidth(), piclabel.getHeight(),Image.SCALE_DEFAULT ));
-        piclabel.setIcon(image);
-        if (!url.equals(""))
-        {EditLabel editLabel = new EditLabel();}
-    }
-
-    private void menuItem8ActionPerformed(ActionEvent e) {
-    // TODO add your code here
-        System.exit(0);
+        // TODO add your code here
     }
 
     private void closePicActionPerformed(ActionEvent e) {
         // TODO add your code here
-        piclabel.setIcon(null);
+    }
+
+    private void menuItem8ActionPerformed(ActionEvent e) {
+        // TODO add your code here
     }
 
     private void checkBoxMenuItem1ItemStateChanged(ItemEvent e) {
         // TODO add your code here
-        if (toolBar1.isVisible())
-        {toolBar1.setVisible(false);}
-        else {
-            toolBar1.setVisible(true);
-        }
     }
-
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -883,12 +858,6 @@ public class MainUI extends JFrame {
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
-
-  private void myInit() {
-    Date now = new Date();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日");
-    operateTime.setText(simpleDateFormat.format(now));
-  }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JMenuBar menuBar1;

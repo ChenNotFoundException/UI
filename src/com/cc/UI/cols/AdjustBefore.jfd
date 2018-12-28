@@ -1,0 +1,84 @@
+JFDML JFormDesigner: "6.0.0.0.84" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :::p, par l {par t:l {seq {comp label1:::p:36:p, space :::p, comp slider4:::p:188:p}, seq {par t {comp label3:::p:36:p, comp label5::t:p::p}, space :::p, par l:::p {comp slider6::::188:x, comp slider5::::0:x}}}, seq l {comp label7:::p:36:p, space :::p, comp slider7:::p:194:p}}, space s:::p, par l:::p {comp label2::::27:x, comp label4::::27:x, comp label6::l::27:x, comp label8::l::27:x}}, seq l {space :p:115:p, comp button1:::p::p}}, space ::2:x}}"
+			"$verticalGroup": "par l {seq {space :p:7:p, par l:::p {comp label2::l:::x, comp slider4::l:::x, comp label1::l:::x}, space :p:10:p, par l {comp slider5:::::x, comp label4::l:::x, comp label3::l:::x}, space :p:10:p, par l:::p {comp slider6:::::x, comp label6::l:::x, comp label5::l:::x}, space :p:10:p, par l:::p {comp label8::l:::x, comp label7::l:::x, comp slider7::l:::x}, space :::p, comp button1:::p::p, space :::p}}"
+		} ) {
+			name: "this"
+			"title": "采集设置对话框"
+			"resizable": false
+			"visible": true
+			add( new FormComponent( "javax.swing.JSlider" ) {
+				name: "slider4"
+				addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "slider4StateChanged", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "增益"
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "0"
+				"horizontalAlignment": 0
+				"border": new javax.swing.border.EtchedBorder( 1, sfield java.awt.Color gray, null )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "曝光"
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JSlider" ) {
+				name: "slider5"
+				addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "slider5StateChanged", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "0"
+				"horizontalAlignment": 0
+				"border": new javax.swing.border.EtchedBorder( 1, sfield java.awt.Color gray, null )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "伽马值"
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JSlider" ) {
+				name: "slider6"
+				addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "slider6StateChanged", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "0"
+				"horizontalAlignment": 0
+				"border": new javax.swing.border.EtchedBorder( 1, sfield java.awt.Color gray, null )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": "偏移"
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JSlider" ) {
+				name: "slider7"
+				addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "slider7StateChanged", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "0"
+				"horizontalAlignment": 0
+				"border": new javax.swing.border.EtchedBorder( 1, sfield java.awt.Color gray, null )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "关闭"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button1ActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 305, 200 )
+		} )
+	}
+}

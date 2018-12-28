@@ -20,5 +20,6 @@
     <orderEntry type="library" name="jgoodies-forms-javadoc (3)" level="project" />
     <orderEntry type="library" name="TableLayout-javadoc (2)" level="project" />
     <orderEntry type="library" name="org-jdesktop-swingx" level="project" />
+    <orderEntry type="library" name="jxmapviewer2-1.3.1" level="project" />
   </component>
 </module>

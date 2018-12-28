@@ -8,8 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
-import javax.swing.border.*;
-import com.jgoodies.forms.factories.*;
+
 
 /**
  * @author chenchen
