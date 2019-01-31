@@ -2,41 +2,259 @@ package com.cc.UI;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.*;
+import com.cc.UI.utils.*;
+
+import com.cc.UI.utils.FileUtils;
+import com.eltima.components.ui.DatePicker;
 import com.jgoodies.forms.factories.*;
-import com.jgoodies.forms.layout.*;
-import info.clearthought.layout.*;
-import org.jdesktop.swingx.*;
 
 /*
  * Created by JFormDesigner on Wed Dec 26 19:45:52 CST 2018
  */
-
-
-
 /**
  * @author ccc
  */
 public class MainUI extends JFrame {
+    private EditLabel editLabel;
     public MainUI() {
         initComponents();
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    private boolean isCameraOn = false;
+    private boolean isChilled = false;
+    private String url = null;
+    private boolean cutPart = false;
+    BufferedImage bufferedImage = null;
+    int x,y,xEnd, yEnd;
 
+    /**
+     * 打开、加载图片
+     * @param e
+     */
     private void button1ActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        url = FileUtils.openFile();
+        ImageIcon background = new ImageIcon(url);
+        try {
+            bufferedImage = ImageIO.read(new File(url));
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }finally {
+            background.setImage(background.getImage().getScaledInstance(bufferedImage.getWidth(), bufferedImage.getHeight(), Image.SCALE_DEFAULT));
+            piclabel.setIcon(background);
+            if (!url.equals(""))
+            {new EditLabel();
+
+            }
+        }
     }
 
+    /**
+     * 关闭图片页面
+     * @param e
+     */
     private void closePicActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        piclabel.setIcon(null);
+        bufferedImage = null;
+        editLabel.dispose();
     }
 
+    /**
+     * 退出程序
+     * @param e
+     */
     private void menuItem8ActionPerformed(ActionEvent e) {
-        // TODO add your code here
+        System.exit(0);
     }
 
+    /**
+     * 工具栏是否隐藏
+     * @param e
+     */
     private void checkBoxMenuItem1ItemStateChanged(ItemEvent e) {
-        // TODO add your code here
+        toolBar1.setVisible(!toolBar1.isVisible());
+    }
+
+    /**
+     * 摄像头打开/关闭功能
+     * @param e
+     */
+    private void button4ActionPerformed(ActionEvent e) {
+
+        if (!isCameraOn) {
+            button4.setIcon(new ImageIcon(getClass().getResource("/\u6444\u50cf\u5934_\u5f00\u542f\u72b6\u6001.jpg")));
+            isCameraOn = true;
+        } else {
+            button4.setIcon(new ImageIcon(getClass().getResource("/\u6444\u50cf\u5934-\u5173\u95ed.jpg")));
+            isCameraOn = false;
+        }
+        //todo 开启摄像头部分
+    }
+
+    /**
+     * 冻结/解冻状态
+     * @param e
+     */
+    private void button5ActionPerformed(ActionEvent e) {
+        if (!isChilled) {
+            button5.setIcon(new ImageIcon(getClass().getResource("/\u89e3\u51bb.jpg")));
+
+            isChilled = true;
+        } else {
+            button5.setIcon(new ImageIcon(getClass().getResource("/\u51bb\u7ed3.jpg")));//冻
+            isChilled = false;
+            System.out.println("冻结状态");
+            //todo 冻结图片
+        }
+
+    }
+
+    /**
+     * 底部备注栏是否打开
+     * @param e
+     */
+    private void checkBoxMenuItem2ActionPerformed(ActionEvent e) {
+        label19.setVisible(!label19.isVisible());
+    }
+
+    /**
+     * 帮助页面
+     * @param e
+     */
+    private void menuItem58ActionPerformed(ActionEvent e) {
+        //todo 帮助说明
+        System.out.println("这里是帮助说明");
+        System.out.println(datePicker1.getText().substring(0,11));
+    }
+
+    /**
+     * 分析栏打开/关闭
+     * @param e
+     */
+    private void checkBoxMenuItem5ActionPerformed(ActionEvent e) {
+        panel1.setVisible(!panel1.isVisible());
+    }
+
+
+    /**
+     * 关闭图片页面
+     * @param e
+     */
+    private void button3ActionPerformed(ActionEvent e) {
+        piclabel.setIcon(null);
+        editLabel.dispose();
+        bufferedImage = null;
+    }
+
+    /**
+     * 处理完保存图片
+     * @param e
+     */
+    private void button2ActionPerformed(ActionEvent e) {
+        try {
+
+            // todo 图片保存
+            BufferedImage bufferedImage2 = bufferedImage.getSubimage(x, y, Math.abs(xEnd - x), Math.abs(yEnd - y));
+            ImageIO.write(bufferedImage2, "PNG", new File(url.substring(0,url.length()-4)+".png"));
+            System.out.println("success saved");
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    /**
+     * 裁剪图片部分
+     * @param e
+     */
+    private void piclabelMousePressed(MouseEvent e) {
+        System.out.print("是否有图片?");
+        System.out.println(url==(null));
+        System.out.println("按下鼠标");
+        piclabel.repaint(piclabel.getBounds());
+        x = e.getX();
+        y = e.getY();
+        System.out.println("拖拽前" + "x:" + x + "y:" + y);
+
+        // TODO 鼠标按下
+    }
+
+
+    private void piclabelMouseReleased(MouseEvent e) {
+        boolean isCut = url==(null);
+
+        /*
+        画出选中矩形区域
+         */
+        if (!isCut) {
+            if (xEnd <= bufferedImage.getWidth() && yEnd <= bufferedImage.getHeight()) {
+
+                xEnd = e.getX();
+                yEnd = e.getY();
+                paintComponents(piclabel.getGraphics());
+            } else {
+//                xEnd = bufferedImage.getWidth()-x;
+//                yEnd = bufferedImage.getHeight() - y;
+                JOptionPane.showMessageDialog(null, "请在图片内框选", "警告", JOptionPane.ERROR_MESSAGE);
+            }
+            //repaint();
+        }
+        System.out.println("拖拽后" + "x:" + e.getX() + "y:" + e.getY());
+
+        // TODO 鼠标抬起
+    }
+
+    private void piclabelMouseDragged(MouseEvent e) {
+        boolean isCut = url==(null);
+
+        if (!isCut) {
+
+            repaint();
+
+            //drawLine(piclabel.getGraphics(),x,y,e.getX(),e.getY());
+            xEnd = e.getX();
+            yEnd = e.getY();
+            if (xEnd<= bufferedImage.getWidth() && yEnd <= bufferedImage.getHeight()) {
+                paintComponents(piclabel.getGraphics());
+            }
+
+        }
+        // TODO 鼠标拖拽
+    }
+
+    @Override
+    public void paintComponents(Graphics g) {
+      //  super.paintComponents(g);
+        drawRect(g, x, y, xEnd, yEnd);
+    }
+
+    private void drawRect(Graphics g, int x, int y, int xEnd, int yEnd) {
+
+        Graphics2D g2d = (Graphics2D) g.create();
+
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setColor(Color.RED);
+        float[] dash = new float[] { 5, 10 };
+        BasicStroke bs2 = new BasicStroke(
+                2,                      // 画笔宽度/线宽
+                BasicStroke.CAP_SQUARE,
+                BasicStroke.JOIN_MITER,
+                10.0f,
+                dash,                   // 虚线模式数组
+                0.0f
+        );
+        g2d.setStroke(bs2);
+        // 1. 绘制一个矩形:
+        g2d.drawRect(x, y, Math.abs(xEnd - x), Math.abs(yEnd - y));
+
+        g2d.dispose();
     }
 
     private void initComponents() {
@@ -127,6 +345,17 @@ public class MainUI extends JFrame {
         button12 = new JButton();
         button13 = new JButton();
         button14 = new JButton();
+        button15 = new JButton();
+        button16 = new JButton();
+        button17 = new JButton();
+        button18 = new JButton();
+        button19 = new JButton();
+        button20 = new JButton();
+        button21 = new JButton();
+        button22 = new JButton();
+        button23 = new JButton();
+        button24 = new JButton();
+        button25 = new JButton();
         panel1 = new JPanel();
         label2 = new JLabel();
         comboBox1 = new JComboBox<>();
@@ -147,6 +376,8 @@ public class MainUI extends JFrame {
         panel2 = new JPanel();
         label16 = compFactory.createLabel("\u6c34\u5e73");
         label17 = compFactory.createLabel("\u5782\u76f4");
+        spinner1 = new JSpinner();
+        spinner2 = new JSpinner();
         panel3 = new JPanel();
         radioButton1 = new JRadioButton();
         radioButton2 = new JRadioButton();
@@ -154,13 +385,14 @@ public class MainUI extends JFrame {
         label15 = new JLabel();
         comboBox2 = new JComboBox();
         label18 = new JLabel();
-        scrollPane1 = new JScrollPane();
-        operateTime = new JTextPane();
-        panel = new JPanel();
+        datePicker1 = new DatePicker();
+        imagePanel = new JPanel();
         piclabel = new JLabel();
+        label19 = new JLabel();
 
         //======== this ========
         setTitle("Tocan\u51dd\u80f6\u5206\u6790\u7cfb\u7edf");
+        setResizable(false);
         Container contentPane = getContentPane();
 
         //======== menuBar1 ========
@@ -416,6 +648,7 @@ public class MainUI extends JFrame {
 
                 //---- checkBoxMenuItem2 ----
                 checkBoxMenuItem2.setText("\u72b6\u6001\u680f");
+                checkBoxMenuItem2.addActionListener(e -> checkBoxMenuItem2ActionPerformed(e));
                 menu5.add(checkBoxMenuItem2);
 
                 //---- checkBoxMenuItem3 ----
@@ -428,6 +661,8 @@ public class MainUI extends JFrame {
 
                 //---- checkBoxMenuItem5 ----
                 checkBoxMenuItem5.setText("\u5206\u6790\u680f");
+                checkBoxMenuItem5.setSelected(true);
+                checkBoxMenuItem5.addActionListener(e -> checkBoxMenuItem5ActionPerformed(e));
                 menu5.add(checkBoxMenuItem5);
 
                 //---- checkBoxMenuItem6 ----
@@ -475,6 +710,7 @@ public class MainUI extends JFrame {
                 //---- menuItem58 ----
                 menuItem58.setText("\u5e2e\u52a9\u4e3b\u9898");
                 menuItem58.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
+                menuItem58.addActionListener(e -> menuItem58ActionPerformed(e));
                 menu7.add(menuItem58);
 
                 //---- menuItem59 ----
@@ -489,53 +725,58 @@ public class MainUI extends JFrame {
         {
             toolBar1.setAlignmentY(1.0F);
             toolBar1.setAlignmentX(1.0F);
+            toolBar1.setFloatable(false);
 
             //---- button1 ----
-            button1.setIcon(new ImageIcon(getClass().getResource("/com/cc/UI/icons/Open.png")));
+            button1.setIcon(new ImageIcon(getClass().getResource("/\u6587\u4ef6\u6253\u5f00.jpg")));
             button1.addActionListener(e -> button1ActionPerformed(e));
             toolBar1.add(button1);
 
             //---- button2 ----
-            button2.setIcon(new ImageIcon(getClass().getResource("/com/cc/UI/icons/Save.png")));
+            button2.setIcon(new ImageIcon(getClass().getResource("/\u6587\u4ef6\u4fdd\u5b58.jpg")));
+            button2.addActionListener(e -> button2ActionPerformed(e));
             toolBar1.add(button2);
 
             //---- button3 ----
-            button3.setIcon(new ImageIcon(getClass().getResource("/com/cc/UI/icons/Close.png")));
+            button3.setIcon(new ImageIcon(getClass().getResource("/\u6587\u4ef6\u6253\u5f00\uff0d\u5173\u95ed\uff0d24x24.jpg")));
+            button3.addActionListener(e -> button3ActionPerformed(e));
             toolBar1.add(button3);
             toolBar1.addSeparator();
 
             //---- button4 ----
-            button4.setText("text");
+            button4.setIcon(new ImageIcon(getClass().getResource("/\u6444\u50cf\u5934-\u5173\u95ed.jpg")));
+            button4.addActionListener(e -> button4ActionPerformed(e));
             toolBar1.add(button4);
 
             //---- button5 ----
-            button5.setText("text");
+            button5.setIcon(new ImageIcon(getClass().getResource("/\u51bb\u7ed3.jpg")));
+            button5.addActionListener(e -> button5ActionPerformed(e));
             toolBar1.add(button5);
 
             //---- button6 ----
-            button6.setText("text");
+            button6.setIcon(new ImageIcon(getClass().getResource("/\u7f51\u7edc\u6293\u53d6.jpg")));
             toolBar1.add(button6);
             toolBar1.addSeparator();
 
             //---- button7 ----
-            button7.setText("text");
+            button7.setIcon(new ImageIcon(getClass().getResource("/\u526a\u5207.jpg")));
             toolBar1.add(button7);
 
             //---- button8 ----
-            button8.setText("text");
+            button8.setIcon(new ImageIcon(getClass().getResource("/\u590d\u5236.jpg")));
             toolBar1.add(button8);
 
             //---- button9 ----
-            button9.setText("text");
+            button9.setIcon(new ImageIcon(getClass().getResource("/\u9ecf\u8d34.jpg")));
             toolBar1.add(button9);
             toolBar1.addSeparator();
 
             //---- button10 ----
-            button10.setText("text");
+            button10.setIcon(new ImageIcon(getClass().getResource("/\u6253\u5370.jpg")));
             toolBar1.add(button10);
 
             //---- button11 ----
-            button11.setText("text");
+            button11.setIcon(new ImageIcon(getClass().getResource("/\u6253\u5370\u9884\u89c8.jpg")));
             toolBar1.add(button11);
 
             //---- button12 ----
@@ -544,18 +785,65 @@ public class MainUI extends JFrame {
             toolBar1.addSeparator();
 
             //---- button13 ----
-            button13.setText("text");
+            button13.setIcon(new ImageIcon(getClass().getResource("/\u653e\u5927.jpg")));
             toolBar1.add(button13);
 
             //---- button14 ----
-            button14.setText("text");
+            button14.setIcon(new ImageIcon(getClass().getResource("/\u7f29\u5c0f.jpg")));
             toolBar1.add(button14);
             toolBar1.addSeparator();
+
+            //---- button15 ----
+            button15.setIcon(new ImageIcon(getClass().getResource("/\u526a\u5207\u533a\u57df.jpg")));
+            toolBar1.add(button15);
+
+            //---- button16 ----
+            button16.setIcon(new ImageIcon(getClass().getResource("/\u6846\u9009.jpg")));
+            toolBar1.add(button16);
+
+            //---- button17 ----
+            button17.setIcon(new ImageIcon(getClass().getResource("/\u53c2\u6570\u5217\u8868.jpg")));
+            toolBar1.add(button17);
+
+            //---- button18 ----
+            button18.setIcon(new ImageIcon(getClass().getResource("/\u63d0\u53d6\u6761\u5e26.jpg")));
+            toolBar1.add(button18);
+
+            //---- button19 ----
+            button19.setIcon(new ImageIcon(getClass().getResource("/\u6570\u636e\u4fee\u6b63.jpg")));
+            toolBar1.add(button19);
+
+            //---- button20 ----
+            button20.setIcon(new ImageIcon(getClass().getResource("/icon-\u9f20\u6807\u7bad\u5934-01.jpg")));
+            toolBar1.add(button20);
+            toolBar1.addSeparator();
+
+            //---- button21 ----
+            button21.setIcon(new ImageIcon(getClass().getResource("/\u5c3a\u5b50.jpg")));
+            toolBar1.add(button21);
+
+            //---- button22 ----
+            button22.setIcon(new ImageIcon(getClass().getResource("/\u5220\u9664\u7ed3\u679c.jpg")));
+            toolBar1.add(button22);
+
+            //---- button23 ----
+            button23.setIcon(new ImageIcon(getClass().getResource("/\u5168\u90e8\u5220\u9664.jpg")));
+            toolBar1.add(button23);
+
+            //---- button24 ----
+            button24.setIcon(new ImageIcon(getClass().getResource("/\u53c2\u6570\u5217\u8868.jpg")));
+            toolBar1.add(button24);
+            toolBar1.addSeparator();
+
+            //---- button25 ----
+            button25.setIcon(new ImageIcon(getClass().getResource("/\u5e2e\u52a9.jpg")));
+            toolBar1.add(button25);
         }
 
         //======== panel1 ========
         {
             panel1.setBackground(new Color(204, 204, 204));
+            panel1.setBorder(new LineBorder(Color.gray, 3, true));
 
             //---- label2 ----
             label2.setText(" \u521d\u59cb\u6cf3\u9053\u6570\uff1a");
@@ -619,6 +907,12 @@ public class MainUI extends JFrame {
                     new EmptyBorder(5, 5, 5, 5)));
                 panel2.setBackground(new Color(204, 204, 204));
 
+                //---- spinner1 ----
+                spinner1.setModel(new SpinnerNumberModel(0, 0, null, 1));
+
+                //---- spinner2 ----
+                spinner2.setModel(new SpinnerNumberModel(0, 0, null, 1));
+
                 GroupLayout panel2Layout = new GroupLayout(panel2);
                 panel2.setLayout(panel2Layout);
                 panel2Layout.setHorizontalGroup(
@@ -627,14 +921,22 @@ public class MainUI extends JFrame {
                             .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                 .addComponent(label16, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(label17, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(76, 76, 76))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(panel2Layout.createParallelGroup()
+                                .addComponent(spinner1)
+                                .addComponent(spinner2))
+                            .addContainerGap())
                 );
                 panel2Layout.setVerticalGroup(
                     panel2Layout.createParallelGroup()
                         .addGroup(panel2Layout.createSequentialGroup()
-                            .addComponent(label16, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label16, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(spinner1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(label17, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label17, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(spinner2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addContainerGap())
                 );
             }
@@ -660,7 +962,7 @@ public class MainUI extends JFrame {
                             .addGroup(panel3Layout.createParallelGroup()
                                 .addComponent(radioButton1, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(radioButton2))
-                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addContainerGap(97, Short.MAX_VALUE))
                 );
                 panel3Layout.setVerticalGroup(
                     panel3Layout.createParallelGroup()
@@ -684,29 +986,18 @@ public class MainUI extends JFrame {
                 //---- label18 ----
                 label18.setText("\u64cd\u4f5c\u65e5\u671f\uff1a");
 
-                //======== scrollPane1 ========
-                {
-
-                    //---- operateTime ----
-                    operateTime.setEditable(false);
-                    scrollPane1.setViewportView(operateTime);
-                }
-
                 GroupLayout panel4Layout = new GroupLayout(panel4);
                 panel4.setLayout(panel4Layout);
                 panel4Layout.setHorizontalGroup(
                     panel4Layout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, panel4Layout.createSequentialGroup()
+                        .addGroup(panel4Layout.createSequentialGroup()
                             .addContainerGap()
-                            .addGroup(panel4Layout.createParallelGroup()
-                                .addComponent(comboBox2)
-                                .addComponent(scrollPane1)
-                                .addGroup(panel4Layout.createSequentialGroup()
-                                    .addGroup(panel4Layout.createParallelGroup()
-                                        .addComponent(label15)
-                                        .addComponent(label18))
-                                    .addGap(0, 0, Short.MAX_VALUE)))
-                            .addContainerGap())
+                            .addGroup(panel4Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                .addComponent(datePicker1, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label15, GroupLayout.Alignment.LEADING)
+                                .addComponent(label18, GroupLayout.Alignment.LEADING)
+                                .addComponent(comboBox2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
+                            .addContainerGap(51, Short.MAX_VALUE))
                 );
                 panel4Layout.setVerticalGroup(
                     panel4Layout.createParallelGroup()
@@ -716,9 +1007,8 @@ public class MainUI extends JFrame {
                             .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(label18)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(42, Short.MAX_VALUE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(datePicker1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 );
             }
 
@@ -728,27 +1018,23 @@ public class MainUI extends JFrame {
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGroup(panel1Layout.createParallelGroup()
-                            .addComponent(label10, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label11, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
+                            .addComponent(label10, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label11, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel1Layout.createParallelGroup()
                             .addComponent(label12, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(label13, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(label14, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label13, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addComponent(label14, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
-                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(label1)
-                        .addGap(75, 75, 75))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGroup(panel1Layout.createParallelGroup()
                             .addComponent(label2, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
                             .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(panel2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(panel3, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(panel4, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(panel4, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(label3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -763,12 +1049,16 @@ public class MainUI extends JFrame {
                                         .addComponent(label8)
                                         .addGap(0, 0, 0)
                                         .addComponent(label9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addContainerGap())
+                        .addGap(1, 1, 1))
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 67, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(separator6, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(label1)
+                        .addGap(75, 75, 75))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
@@ -793,55 +1083,84 @@ public class MainUI extends JFrame {
                             .addComponent(label7, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(label10)
-                            .addComponent(label12))
+                            .addComponent(label12)
+                            .addComponent(label10))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(label11)
                             .addComponent(label13)
-                            .addComponent(label14, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(label14, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label11))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(separator6, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panel2, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2)
-                        .addComponent(panel3, GroupLayout.PREFERRED_SIZE, 68, GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addComponent(panel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2))
-            );
-        }
-
-        //======== panel ========
-        {
-            panel.setBackground(new Color(204, 204, 204));
-
-            GroupLayout panelLayout = new GroupLayout(panel);
-            panel.setLayout(panelLayout);
-            panelLayout.setHorizontalGroup(
-                panelLayout.createParallelGroup()
-                    .addGroup(GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(piclabel, GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE))
-            );
-            panelLayout.setVerticalGroup(
-                panelLayout.createParallelGroup()
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(piclabel, GroupLayout.PREFERRED_SIZE, 377, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panel3, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
             );
         }
+
+        //======== imagePanel ========
+        {
+            imagePanel.setBackground(Color.white);
+            imagePanel.setBorder(new LineBorder(Color.gray, 3, true));
+
+            //---- piclabel ----
+            piclabel.setBackground(new Color(204, 204, 204));
+            piclabel.setBorder(null);
+            piclabel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    piclabelMousePressed(e);
+                }
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    piclabelMouseReleased(e);
+                }
+            });
+            piclabel.addMouseMotionListener(new MouseMotionAdapter() {
+                @Override
+                public void mouseDragged(MouseEvent e) {
+                    piclabelMouseDragged(e);
+                }
+            });
+
+            GroupLayout imagePanelLayout = new GroupLayout(imagePanel);
+            imagePanel.setLayout(imagePanelLayout);
+            imagePanelLayout.setHorizontalGroup(
+                imagePanelLayout.createParallelGroup()
+                    .addComponent(piclabel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
+            );
+            imagePanelLayout.setVerticalGroup(
+                imagePanelLayout.createParallelGroup()
+                    .addGroup(imagePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(piclabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(70, 70, 70))
+            );
+        }
+
+        //---- label19 ----
+        label19.setText("\u5982\u9700\u5e2e\u52a9\uff0c\u8bf7\u6309F1");
+        label19.setBackground(new Color(153, 153, 153));
+        label19.setBorder(new TitledBorder(""));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(toolBar1, GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(toolBar1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(imagePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(label19, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addContainerGap())
         );
         contentPaneLayout.setVerticalGroup(
@@ -850,9 +1169,11 @@ public class MainUI extends JFrame {
                     .addComponent(toolBar1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 554, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(imagePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(label19, GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addGap(12, 12, 12))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -945,6 +1266,17 @@ public class MainUI extends JFrame {
     private JButton button12;
     private JButton button13;
     private JButton button14;
+    private JButton button15;
+    private JButton button16;
+    private JButton button17;
+    private JButton button18;
+    private JButton button19;
+    private JButton button20;
+    private JButton button21;
+    private JButton button22;
+    private JButton button23;
+    private JButton button24;
+    private JButton button25;
     private JPanel panel1;
     private JLabel label2;
     private JComboBox<String> comboBox1;
@@ -965,6 +1297,8 @@ public class MainUI extends JFrame {
     private JPanel panel2;
     private JLabel label16;
     private JLabel label17;
+    private JSpinner spinner1;
+    private JSpinner spinner2;
     private JPanel panel3;
     private JRadioButton radioButton1;
     private JRadioButton radioButton2;
@@ -972,9 +1306,9 @@ public class MainUI extends JFrame {
     private JLabel label15;
     private JComboBox comboBox2;
     private JLabel label18;
-    private JScrollPane scrollPane1;
-    private JTextPane operateTime;
-    private JPanel panel;
+    private DatePicker datePicker1;
+    private JPanel imagePanel;
     private JLabel piclabel;
+    private JLabel label19;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

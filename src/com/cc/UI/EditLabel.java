@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
+import javax.swing.event.*;
+import info.clearthought.layout.*;
 
 
 /**
@@ -15,13 +17,24 @@ import javax.swing.GroupLayout;
  */
 public class EditLabel extends JFrame {
     public EditLabel() {
-        myInit();
         initComponents();
+        myInit();
     }
 
     private void button7MousePressed(MouseEvent e) {
-        // TODO add your code here
         label5.setText(String.valueOf((Integer.valueOf(label5.getText()) + 4)));
+    }
+
+    private void button8ActionPerformed(ActionEvent e) {
+        if (Integer.valueOf(label5.getText()) <= 0) {
+            label5.setText("0");
+
+        }else
+        label5.setText(String.valueOf((Integer.valueOf(label5.getText()) - 4)));
+    }
+
+    private void spinner4StateChanged(ChangeEvent e) {
+        label5.setText(spinner4.getValue().toString());
     }
 
     private void initComponents() {
@@ -43,15 +56,12 @@ public class EditLabel extends JFrame {
         panel8 = new JPanel();
         radioButton1 = new JRadioButton();
         label4 = new JLabel();
-        button1 = new JButton();
-        button2 = new JButton();
-        button3 = new JButton();
-        button4 = new JButton();
-        button5 = new JButton();
-        button6 = new JButton();
-        button7 = new JButton();
-        button8 = new JButton();
         label5 = new JLabel();
+        panel9 = new JPanel();
+        spinner1 = new JSpinner();
+        spinner2 = new JSpinner();
+        spinner3 = new JSpinner();
+        spinner4 = new JSpinner();
 
         //======== this ========
         setVisible(true);
@@ -212,7 +222,7 @@ public class EditLabel extends JFrame {
             panel6Layout.setHorizontalGroup(
                 panel6Layout.createParallelGroup()
                     .addGroup(GroupLayout.Alignment.TRAILING, panel6Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 0, 0)
                         .addComponent(label2, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
             );
             panel6Layout.setVerticalGroup(
@@ -220,7 +230,7 @@ public class EditLabel extends JFrame {
                     .addGroup(panel6Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(label2)
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(20, Short.MAX_VALUE))
             );
         }
 
@@ -280,38 +290,22 @@ public class EditLabel extends JFrame {
         label4.setText(" \u6b65\u8fdb\u503c\u4e3a\uff1a");
         label4.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
 
-        //---- button1 ----
-        button1.setText("+");
-
-        //---- button2 ----
-        button2.setText("-");
-
-        //---- button3 ----
-        button3.setText("+");
-
-        //---- button4 ----
-        button4.setText("-");
-
-        //---- button5 ----
-        button5.setText("+");
-
-        //---- button6 ----
-        button6.setText("-");
-
-        //---- button7 ----
-        button7.setText("+");
-        button7.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                button7MousePressed(e);
-            }
-        });
-
-        //---- button8 ----
-        button8.setText("-");
-
         //---- label5 ----
         label5.setText("0");
+        label5.setFont(new Font("\u5b8b\u4f53", Font.BOLD, 16));
+        label5.setHorizontalAlignment(SwingConstants.CENTER);
+
+        //======== panel9 ========
+        {
+            panel9.setLayout(new TableLayout(new double[][] {
+                {TableLayout.FILL},
+                {TableLayout.FILL, TableLayout.FILL}}));
+            ((TableLayout)panel9.getLayout()).setHGap(3);
+        }
+
+        //---- spinner4 ----
+        spinner4.setModel(new SpinnerNumberModel(0, 0, null, 4));
+        spinner4.addChangeListener(e -> spinner4StateChanged(e));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -321,46 +315,35 @@ public class EditLabel extends JFrame {
                     .addContainerGap()
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(panel2, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(panel4, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                            .addGap(15, 15, 15))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGroup(contentPaneLayout.createParallelGroup()
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                 .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                                    .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addComponent(panel2, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(panel4, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(GroupLayout.Alignment.LEADING, contentPaneLayout.createSequentialGroup()
                                     .addGroup(contentPaneLayout.createParallelGroup()
                                         .addComponent(panel5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(panel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGap(18, 18, 18)
+                                        .addComponent(panel7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(panel8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(panel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                    .addGap(43, 43, 43)
                                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(button1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(button3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, 23, Short.MAX_VALUE))
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addGroup(contentPaneLayout.createParallelGroup()
-                                        .addGroup(contentPaneLayout.createSequentialGroup()
-                                            .addComponent(panel7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(button5))
-                                        .addGroup(contentPaneLayout.createSequentialGroup()
-                                            .addComponent(panel8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(button7))
-                                        .addGroup(contentPaneLayout.createSequentialGroup()
-                                            .addComponent(label4)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(label5, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE)))
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                .addComponent(button2, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                                .addComponent(button4, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                                .addComponent(button6, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
-                                .addComponent(button8, GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
-                            .addContainerGap(19, Short.MAX_VALUE))))
+                                        .addComponent(spinner4, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                        .addComponent(spinner3, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                        .addComponent(spinner2, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                        .addComponent(spinner1, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+                                    .addGap(18, 18, 18)
+                                    .addComponent(panel9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGap(15, 15, 15))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addComponent(label4, GroupLayout.PREFERRED_SIZE, 113, GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(label5, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(49, Short.MAX_VALUE))))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -375,33 +358,32 @@ public class EditLabel extends JFrame {
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addComponent(panel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addGap(0, 0, Short.MAX_VALUE)))
-                    .addGap(18, 19, Short.MAX_VALUE)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                        .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(button1, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                            .addComponent(button2, GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
-                        .addComponent(panel5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(panel6, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(button3, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(button4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGap(18, 18, 18)
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(button5, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(button6, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE))
-                        .addComponent(panel7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                        .addComponent(button7, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                        .addComponent(button8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panel8, GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(label4)
-                        .addComponent(label5))
-                    .addGap(25, 25, 25))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addComponent(panel9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(219, 219, 219))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(panel5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(spinner1))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(contentPaneLayout.createParallelGroup()
+                                .addComponent(spinner2, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(panel6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addComponent(panel7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(spinner3))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addComponent(panel8, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(spinner4))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label4)
+                                .addComponent(label5, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
+                            .addGap(29, 29, 29))))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -409,6 +391,10 @@ public class EditLabel extends JFrame {
     }
 
   private void myInit() {
+      ButtonGroup buttonGroup = new ButtonGroup();
+      buttonGroup.add(radioButton6);
+      buttonGroup.add(radioButton4);
+
   }
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     private JPanel panel1;
@@ -428,15 +414,12 @@ public class EditLabel extends JFrame {
     private JPanel panel8;
     private JRadioButton radioButton1;
     private JLabel label4;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
-    private JButton button6;
-    private JButton button7;
-    private JButton button8;
     private JLabel label5;
+    private JPanel panel9;
+    private JSpinner spinner1;
+    private JSpinner spinner2;
+    private JSpinner spinner3;
+    private JSpinner spinner4;
   // JFormDesigner - End of variables declaration  //GEN-END:variables
   public static void main(String[] args) {
     EditLabel editLabel = new EditLabel();

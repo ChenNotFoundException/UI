@@ -3,35 +3,59 @@ JFDML JFormDesigner: "6.0.0.0.84" Java: "1.8.0_152-release" encoding: "UTF-8"
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp button1::::59:x, comp button2::l::59:x, comp button3::::59:x, comp button4::l::59:x}"
-			"$verticalGroup": "par l {seq t {comp button1:::p::p, space :::p, comp button2:::p::p, space :::p, comp button3:::p::p, space :::p, comp button4:::p::p, space ::9:x}}"
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.swingx.VerticalLayout ) {
+			"gap": 2
 		} ) {
 			name: "this"
 			"alwaysOnTop": true
 			"visible": true
 			"$sizePolicy": 1
 			"resizable": false
-			"minimumSize": new java.awt.Dimension( 1, 1 )
+			"background": new java.awt.Color( 255, 255, 255, 255 )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button1"
-				"text": "text"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon-鼠标箭头-01.jpg" )
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"borderPainted": false
+				"minimumSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"preferredSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"margin": new java.awt.Insets( 1, 0, 1, 0 )
+				"opaque": false
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button2"
-				"text": "text"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/大写.png" )
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"borderPainted": false
+				"minimumSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"preferredSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"margin": new java.awt.Insets( 1, 0, 1, 0 )
+				"opaque": false
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button3"
-				"text": "text"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/斜线.png" )
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"borderPainted": false
+				"preferredSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"minimumSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"margin": new java.awt.Insets( 1, 0, 1, 0 )
+				"opaque": false
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button4"
-				"text": "text"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/下.png" )
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"borderPainted": false
+				"iconTextGap": 0
+				"minimumSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"preferredSize": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"margin": new java.awt.Insets( 1, 0, 1, 0 )
+				"opaque": false
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 70, 10 )
-			"size": new java.awt.Dimension( 75, 155 )
+			"location": new java.awt.Point( 100, 10 )
+			"size": new java.awt.Dimension( 35, 130 )
 		} )
 	}
 }

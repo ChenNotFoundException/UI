@@ -10,6 +10,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import info.clearthought.layout.*;
+import org.jdesktop.swingx.*;
 
 
 /**
@@ -23,6 +24,7 @@ public class LabelForm extends JDialog {
 
     public LabelForm() {
         initComponents();
+        myInit();
     }
 
     private void myInit() {
@@ -47,43 +49,51 @@ public class LabelForm extends JDialog {
         setAlwaysOnTop(true);
         setVisible(true);
         setResizable(false);
-        setMinimumSize(new Dimension(1, 1));
+        setBackground(Color.white);
         Container contentPane = getContentPane();
+        contentPane.setLayout(new VerticalLayout(2));
 
         //---- button1 ----
-        button1.setText("text");
+        button1.setIcon(new ImageIcon(getClass().getResource("/icon-\u9f20\u6807\u7bad\u5934-01.jpg")));
+        button1.setBorder(null);
+        button1.setBorderPainted(false);
+        button1.setMinimumSize(null);
+        button1.setPreferredSize(null);
+        button1.setMargin(new Insets(1, 0, 1, 0));
+        button1.setOpaque(false);
+        contentPane.add(button1);
 
         //---- button2 ----
-        button2.setText("text");
+        button2.setIcon(new ImageIcon(getClass().getResource("/\u5927\u5199.png")));
+        button2.setBorder(null);
+        button2.setBorderPainted(false);
+        button2.setMinimumSize(null);
+        button2.setPreferredSize(null);
+        button2.setMargin(new Insets(1, 0, 1, 0));
+        button2.setOpaque(false);
+        contentPane.add(button2);
 
         //---- button3 ----
-        button3.setText("text");
+        button3.setIcon(new ImageIcon(getClass().getResource("/\u659c\u7ebf.png")));
+        button3.setBorder(null);
+        button3.setBorderPainted(false);
+        button3.setPreferredSize(null);
+        button3.setMinimumSize(null);
+        button3.setMargin(new Insets(1, 0, 1, 0));
+        button3.setOpaque(false);
+        contentPane.add(button3);
 
         //---- button4 ----
-        button4.setText("text");
-
-        GroupLayout contentPaneLayout = new GroupLayout(contentPane);
-        contentPane.setLayout(contentPaneLayout);
-        contentPaneLayout.setHorizontalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addComponent(button1, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                .addComponent(button2, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                .addComponent(button3, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                .addComponent(button4, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-        );
-        contentPaneLayout.setVerticalGroup(
-            contentPaneLayout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addComponent(button1)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(button2)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(button3)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(button4)
-                    .addContainerGap(9, Short.MAX_VALUE))
-        );
-        setSize(75, 155);
+        button4.setIcon(new ImageIcon(getClass().getResource("/\u4e0b.png")));
+        button4.setBorder(null);
+        button4.setBorderPainted(false);
+        button4.setIconTextGap(0);
+        button4.setMinimumSize(null);
+        button4.setPreferredSize(null);
+        button4.setMargin(new Insets(1, 0, 1, 0));
+        button4.setOpaque(false);
+        contentPane.add(button4);
+        setSize(35, 130);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }

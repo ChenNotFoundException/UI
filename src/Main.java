@@ -11,8 +11,11 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                MainUI nm = new MainUI();
+                //LoginDia loginDia = new LoginDia();
+//                loginDia.setVisible(true);
                // nm.setBounds(10,10,1000,1000);
+                MainUI mainUI = new MainUI();
+                mainUI.setVisible(true);
             }
         });
     }

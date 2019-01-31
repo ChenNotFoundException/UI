@@ -1,0 +1,74 @@
+JFDML JFormDesigner: "6.0.0.0.84" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :::p, comp panel1:::p:81:p, space u:::p, comp panel2:::p:87:p, space :p:7:p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par l {comp panel1:::p:256:p, comp panel2:::::x}, space :::p}}"
+		} ) {
+			name: "this"
+			"resizable": false
+			"$sizePolicy": 1
+			"visible": true
+			"defaultCloseOperation": 2
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+				"columns": 2
+				"rows": 5
+				"hgap": 1
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button3"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/大写.png" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button5"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/方框.jpg" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button6"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/上.png" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button7"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/左.png" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button8"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/用户.png" )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
+				"columns": 2
+				"rows": 5
+				"hgap": 1
+			} ) {
+				name: "panel2"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button12"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/斜线.png" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button13"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/圆圈.png" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button14"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/下.png" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button15"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/右.png" )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "button16"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/记事本.png" )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 200, 300 )
+		} )
+	}
+}
