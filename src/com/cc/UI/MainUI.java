@@ -2,15 +2,12 @@ package com.cc.UI;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.*;
-import com.cc.UI.utils.*;
 
 import com.cc.UI.utils.FileUtils;
 import com.eltima.components.ui.DatePicker;
@@ -37,6 +34,18 @@ public class MainUI extends JFrame {
     int x,y,xEnd, yEnd;
 
     /**
+     * 设置显示图片
+     * @param image
+     */
+    private void setPic(BufferedImage image) {
+//        Image image2 = image;
+        piclabel.setIcon(null);
+        ImageIcon icon = new ImageIcon(image);
+       // icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth(), icon.getIconHeight(), Image.SCALE_DEFAULT));
+        piclabel.setIcon(icon);
+    }
+
+    /**
      * 打开、加载图片
      * @param e
      */
@@ -48,8 +57,9 @@ public class MainUI extends JFrame {
         } catch (IOException e1) {
             e1.printStackTrace();
         }finally {
-            background.setImage(background.getImage().getScaledInstance(bufferedImage.getWidth(), bufferedImage.getHeight(), Image.SCALE_DEFAULT));
+           //
             piclabel.setIcon(background);
+//            setPic(bufferedImage);
             if (!url.equals(""))
             {new EditLabel();
 
@@ -160,10 +170,10 @@ public class MainUI extends JFrame {
      */
     private void button2ActionPerformed(ActionEvent e) {
         try {
-
-            // todo 图片保存
-            BufferedImage bufferedImage2 = bufferedImage.getSubimage(x, y, Math.abs(xEnd - x), Math.abs(yEnd - y));
-            ImageIO.write(bufferedImage2, "PNG", new File(url.substring(0,url.length()-4)+".png"));
+            ImageIO.write(bufferedImage, "PNG", new File(url.substring(0,url.length()-4)+".png"));
+            cutPart = false;
+            button16.setBackground(null);
+//            temp = bufferedImage;
             System.out.println("success saved");
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -182,18 +192,14 @@ public class MainUI extends JFrame {
         x = e.getX();
         y = e.getY();
         System.out.println("拖拽前" + "x:" + x + "y:" + y);
-
-        // TODO 鼠标按下
     }
 
 
     private void piclabelMouseReleased(MouseEvent e) {
-        boolean isCut = url==(null);
-
         /*
         画出选中矩形区域
          */
-        if (!isCut) {
+        if (cutPart) {
             if (xEnd <= bufferedImage.getWidth() && yEnd <= bufferedImage.getHeight()) {
 
                 xEnd = e.getX();
@@ -207,26 +213,19 @@ public class MainUI extends JFrame {
             //repaint();
         }
         System.out.println("拖拽后" + "x:" + e.getX() + "y:" + e.getY());
-
-        // TODO 鼠标抬起
     }
 
     private void piclabelMouseDragged(MouseEvent e) {
-        boolean isCut = url==(null);
-
-        if (!isCut) {
-
+        if (cutPart) {
             repaint();
-
             //drawLine(piclabel.getGraphics(),x,y,e.getX(),e.getY());
             xEnd = e.getX();
             yEnd = e.getY();
-            if (xEnd<= bufferedImage.getWidth() && yEnd <= bufferedImage.getHeight()) {
+            if (xEnd <= bufferedImage.getWidth() && yEnd <= bufferedImage.getHeight()) {
                 paintComponents(piclabel.getGraphics());
             }
 
         }
-        // TODO 鼠标拖拽
     }
 
     @Override
@@ -236,9 +235,7 @@ public class MainUI extends JFrame {
     }
 
     private void drawRect(Graphics g, int x, int y, int xEnd, int yEnd) {
-
         Graphics2D g2d = (Graphics2D) g.create();
-
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setColor(Color.RED);
         float[] dash = new float[] { 5, 10 };
@@ -253,8 +250,48 @@ public class MainUI extends JFrame {
         g2d.setStroke(bs2);
         // 1. 绘制一个矩形:
         g2d.drawRect(x, y, Math.abs(xEnd - x), Math.abs(yEnd - y));
-
         g2d.dispose();
+    }
+
+    /**
+     * 设置裁剪区域
+     * @param e
+     */
+    private void setCutActionPerformed(ActionEvent e) {
+        cutPart = true;
+        button16.setBackground(Color.RED);
+    }
+
+    /**
+     * 显示裁剪区域图片
+     * @param e
+     */
+    private void cutAreaActionPerformed(ActionEvent e) {
+        bufferedImage = bufferedImage.getSubimage(x, y, Math.abs(xEnd - x), Math.abs(yEnd - y));
+        setPic(bufferedImage);
+    }
+
+    /**
+     * 图片另存为
+     * @param e
+     */
+    private void saveAsActionPerformed(ActionEvent e) {
+        try {
+            String url2 = FileUtils.openFile();
+            ImageIO.write(bufferedImage, "PNG", new File(url2+".png"));
+            System.out.println("saveAs SUCCESS");
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 撤销操作
+     * @param e
+     */
+    private void withdrawActionPerformed(ActionEvent e) {
+//todo 撤销 初步考虑使用stack
     }
 
     private void initComponents() {
@@ -416,6 +453,7 @@ public class MainUI extends JFrame {
 
                 //---- menuItem3 ----
                 menuItem3.setText("\u53e6\u5b58\u4e3a");
+                menuItem3.addActionListener(e -> saveAsActionPerformed(e));
                 menu1.add(menuItem3);
 
                 //---- menuItem4 ----
@@ -497,6 +535,7 @@ public class MainUI extends JFrame {
 
                 //---- menuItem19 ----
                 menuItem19.setText("\u64a4\u9500");
+                menuItem19.addActionListener(e -> withdrawActionPerformed(e));
                 menu2.add(menuItem19);
             }
             menuBar1.add(menu2);
@@ -795,10 +834,12 @@ public class MainUI extends JFrame {
 
             //---- button15 ----
             button15.setIcon(new ImageIcon(getClass().getResource("/\u526a\u5207\u533a\u57df.jpg")));
+            button15.addActionListener(e -> cutAreaActionPerformed(e));
             toolBar1.add(button15);
 
             //---- button16 ----
             button16.setIcon(new ImageIcon(getClass().getResource("/\u6846\u9009.jpg")));
+            button16.addActionListener(e -> setCutActionPerformed(e));
             toolBar1.add(button16);
 
             //---- button17 ----
@@ -962,7 +1003,7 @@ public class MainUI extends JFrame {
                             .addGroup(panel3Layout.createParallelGroup()
                                 .addComponent(radioButton1, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(radioButton2))
-                            .addContainerGap(97, Short.MAX_VALUE))
+                            .addContainerGap(105, Short.MAX_VALUE))
                 );
                 panel3Layout.setVerticalGroup(
                     panel3Layout.createParallelGroup()
@@ -997,7 +1038,7 @@ public class MainUI extends JFrame {
                                 .addComponent(label15, GroupLayout.Alignment.LEADING)
                                 .addComponent(label18, GroupLayout.Alignment.LEADING)
                                 .addComponent(comboBox2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(51, Short.MAX_VALUE))
+                            .addContainerGap(59, Short.MAX_VALUE))
                 );
                 panel4Layout.setVerticalGroup(
                     panel4Layout.createParallelGroup()
@@ -1025,7 +1066,7 @@ public class MainUI extends JFrame {
                             .addComponent(label12, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(label13, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                                 .addComponent(label14, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
                     .addGroup(panel1Layout.createSequentialGroup()
@@ -1131,14 +1172,15 @@ public class MainUI extends JFrame {
             imagePanel.setLayout(imagePanelLayout);
             imagePanelLayout.setHorizontalGroup(
                 imagePanelLayout.createParallelGroup()
-                    .addComponent(piclabel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
+                    .addGroup(GroupLayout.Alignment.TRAILING, imagePanelLayout.createSequentialGroup()
+                        .addGap(0, 97, Short.MAX_VALUE)
+                        .addComponent(piclabel, GroupLayout.PREFERRED_SIZE, 664, GroupLayout.PREFERRED_SIZE))
             );
             imagePanelLayout.setVerticalGroup(
                 imagePanelLayout.createParallelGroup()
                     .addGroup(imagePanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(piclabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(70, 70, 70))
+                        .addComponent(piclabel, GroupLayout.PREFERRED_SIZE, 485, GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
             );
         }
 
