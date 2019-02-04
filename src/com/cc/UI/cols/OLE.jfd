@@ -12,6 +12,7 @@ new FormModel {
 			"$sizePolicy": 1
 			"visible": true
 			"defaultCloseOperation": 2
+			"title": "标注"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridLayout ) {
 				"columns": 2
 				"rows": 5

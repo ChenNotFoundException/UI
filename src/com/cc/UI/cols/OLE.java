@@ -51,6 +51,7 @@ public class OLE extends JDialog {
         setResizable(false);
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("\u6807\u6ce8");
         Container contentPane = getContentPane();
 
         //======== panel1 ========

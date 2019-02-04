@@ -1,0 +1,62 @@
+JFDML JFormDesigner: "6.0.0.0.84" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq l {comp button5:::p::p, space :::p, comp button6:::p::p}, seq l {par l {comp button1::l:p::p, comp button3::l:p::p}, space :::p, par l {comp button4:::p::p, comp button2:::p::p}}, comp panel1:::p::p}, space :0:11:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, par l {comp button2:::p::p, comp button1:::p::p}, space u:::p, par l {comp button3:::p::p, comp button4:::p::p}, space :::p, par l {comp button5:::p::p, comp button6:::p::p}, space :::p, comp panel1:::p::p, space ::16:x}}"
+		} ) {
+			name: "this"
+			"$sizePolicy": 1
+			"title": "旋转"
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/UCC-上下 copy.jpg" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "romateVerActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/镜像.jpg" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "romateHorActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/向左90度.jpg" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "L90ActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button4"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/向右90度.jpg" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "R90ActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button5"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/旋转180度.jpg" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "romate180ActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button6"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/旋转.jpg" )
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "FreeSpinActionPerformed", true ) )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {comp label1:::p::p, space :::x, comp textField1:::p:55:p, space :p:15:p}}"
+				"$verticalGroup": "par l {seq l {space :::p, par b {comp label1::b:p::p, comp textField1::b:p::p}, space ::29:x}}"
+			} ) {
+				name: "panel1"
+				"border": new javax.swing.border.TitledBorder( "自定义角度" )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "角度："
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField1"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 605, 0 )
+			"size": new java.awt.Dimension( 135, 245 )
+		} )
+	}
+}

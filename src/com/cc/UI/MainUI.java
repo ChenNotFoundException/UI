@@ -5,10 +5,12 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Stack;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import com.cc.UI.cols.SpinFrame;
 import com.cc.UI.utils.FileUtils;
 import com.eltima.components.ui.DatePicker;
 import com.jgoodies.forms.factories.*;
@@ -16,52 +18,61 @@ import com.jgoodies.forms.factories.*;
 /*
  * Created by JFormDesigner on Wed Dec 26 19:45:52 CST 2018
  */
+
 /**
  * @author ccc
  */
 public class MainUI extends JFrame {
     private EditLabel editLabel;
+
     public MainUI() {
         initComponents();
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
     private boolean isCameraOn = false;
     private boolean isChilled = false;
+    private Stack <BufferedImage> previousOperate;
     private String url = null;
     private boolean cutPart = false;
     BufferedImage bufferedImage = null;
-    int x,y,xEnd, yEnd;
+    int xBegin, yBegin, xEnd, yEnd;
 
     /**
      * 设置显示图片
+     *
      * @param image
      */
     private void setPic(BufferedImage image) {
 //        Image image2 = image;
         piclabel.setIcon(null);
         ImageIcon icon = new ImageIcon(image);
-       // icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth(), icon.getIconHeight(), Image.SCALE_DEFAULT));
+        // icon.setImage(icon.getImage().getScaledInstance(icon.getIconWidth(), icon.getIconHeight(), Image.SCALE_DEFAULT));
         piclabel.setIcon(icon);
     }
 
     /**
      * 打开、加载图片
+     *
      * @param e
      */
     private void button1ActionPerformed(ActionEvent e) {
+        previousOperate = new Stack <>();
         url = FileUtils.openFile();
         ImageIcon background = new ImageIcon(url);
         try {
             bufferedImage = ImageIO.read(new File(url));
+            previousOperate.push(bufferedImage);
         } catch (IOException e1) {
             e1.printStackTrace();
-        }finally {
-           //
+        } finally {
+            //
             piclabel.setIcon(background);
+            new SpinFrame(previousOperate, bufferedImage, piclabel);
 //            setPic(bufferedImage);
-            if (!url.equals(""))
-            {new EditLabel();
+            if (!url.equals("")) {
+                new EditLabel();
 
             }
         }
@@ -69,16 +80,35 @@ public class MainUI extends JFrame {
 
     /**
      * 关闭图片页面
+     *
      * @param e
      */
     private void closePicActionPerformed(ActionEvent e) {
         piclabel.setIcon(null);
         bufferedImage = null;
         editLabel.dispose();
+        previousOperate = null;
+        label19.setText("\u5982\u9700\u5e2e\u52a9\uff0c\u8bf7\u6309F1");
+
+    }
+
+    /**
+     * 关闭图片页面
+     *
+     * @param e
+     */
+    private void button3ActionPerformed(ActionEvent e) {
+        piclabel.setIcon(null);
+        editLabel.dispose();
+        bufferedImage = null;
+        previousOperate = null;
+        label19.setText("\u5982\u9700\u5e2e\u52a9\uff0c\u8bf7\u6309F1");
+
     }
 
     /**
      * 退出程序
+     *
      * @param e
      */
     private void menuItem8ActionPerformed(ActionEvent e) {
@@ -87,6 +117,7 @@ public class MainUI extends JFrame {
 
     /**
      * 工具栏是否隐藏
+     *
      * @param e
      */
     private void checkBoxMenuItem1ItemStateChanged(ItemEvent e) {
@@ -95,6 +126,7 @@ public class MainUI extends JFrame {
 
     /**
      * 摄像头打开/关闭功能
+     *
      * @param e
      */
     private void button4ActionPerformed(ActionEvent e) {
@@ -111,6 +143,7 @@ public class MainUI extends JFrame {
 
     /**
      * 冻结/解冻状态
+     *
      * @param e
      */
     private void button5ActionPerformed(ActionEvent e) {
@@ -129,6 +162,7 @@ public class MainUI extends JFrame {
 
     /**
      * 底部备注栏是否打开
+     *
      * @param e
      */
     private void checkBoxMenuItem2ActionPerformed(ActionEvent e) {
@@ -137,16 +171,18 @@ public class MainUI extends JFrame {
 
     /**
      * 帮助页面
+     *
      * @param e
      */
     private void menuItem58ActionPerformed(ActionEvent e) {
         //todo 帮助说明
         System.out.println("这里是帮助说明");
-        System.out.println(datePicker1.getText().substring(0,11));
+        System.out.println(datePicker1.getText().substring(0, 11));
     }
 
     /**
      * 分析栏打开/关闭
+     *
      * @param e
      */
     private void checkBoxMenuItem5ActionPerformed(ActionEvent e) {
@@ -155,24 +191,18 @@ public class MainUI extends JFrame {
 
 
     /**
-     * 关闭图片页面
-     * @param e
-     */
-    private void button3ActionPerformed(ActionEvent e) {
-        piclabel.setIcon(null);
-        editLabel.dispose();
-        bufferedImage = null;
-    }
-
-    /**
      * 处理完保存图片
+     *
      * @param e
      */
     private void button2ActionPerformed(ActionEvent e) {
         try {
-            ImageIO.write(bufferedImage, "PNG", new File(url.substring(0,url.length()-4)+".png"));
+            ImageIO.write(bufferedImage, "PNG", new File(url.substring(0, url.length() - 4) + ".png"));
             cutPart = false;
             button16.setBackground(null);
+            previousOperate = null;
+            label19.setText("\u5982\u9700\u5e2e\u52a9\uff0c\u8bf7\u6309F1");
+
 //            temp = bufferedImage;
             System.out.println("success saved");
         } catch (IOException e1) {
@@ -182,46 +212,51 @@ public class MainUI extends JFrame {
 
     /**
      * 裁剪图片部分
+     *
      * @param e
      */
     private void piclabelMousePressed(MouseEvent e) {
-        System.out.print("是否有图片?");
-        System.out.println(url==(null));
-        System.out.println("按下鼠标");
+//        System.out.print("是否有图片?");
+//        System.out.println(url == (null));
+       // System.out.println("按下鼠标");
         piclabel.repaint(piclabel.getBounds());
-        x = e.getX();
-        y = e.getY();
-        System.out.println("拖拽前" + "x:" + x + "y:" + y);
+        xBegin = e.getX();
+        yBegin = e.getY();
+        //System.out.println("拖拽前" + "xBegin:" + xBegin + "--yBegin:" + yBegin);
     }
 
 
     private void piclabelMouseReleased(MouseEvent e) {
+        int LX = bufferedImage.getMinX() + bufferedImage.getWidth();
+        int LY = bufferedImage.getMinY() + bufferedImage.getHeight();
+        xEnd = e.getX();
+        yEnd = e.getY();
+//        System.out.println(xEnd+"--"+yEnd);
         /*
         画出选中矩形区域
          */
         if (cutPart) {
-            if (xEnd <= bufferedImage.getWidth() && yEnd <= bufferedImage.getHeight()) {
-
+            if (xEnd - xBegin <= LX && yEnd- yBegin <= LY) {
                 xEnd = e.getX();
                 yEnd = e.getY();
                 paintComponents(piclabel.getGraphics());
             } else {
-//                xEnd = bufferedImage.getWidth()-x;
-//                yEnd = bufferedImage.getHeight() - y;
+//                xEnd = bufferedImage.getWidth()-xBegin;
+//                yEnd = bufferedImage.getHeight() - yBegin;
                 JOptionPane.showMessageDialog(null, "请在图片内框选", "警告", JOptionPane.ERROR_MESSAGE);
             }
             //repaint();
         }
-        System.out.println("拖拽后" + "x:" + e.getX() + "y:" + e.getY());
+//        System.out.println("拖拽后" + "xBegin:" + e.getX() + "yBegin:" + e.getY());
     }
 
     private void piclabelMouseDragged(MouseEvent e) {
         if (cutPart) {
             repaint();
-            //drawLine(piclabel.getGraphics(),x,y,e.getX(),e.getY());
+            //drawLine(piclabel.getGraphics(),xBegin,yBegin,e.getX(),e.getY());
             xEnd = e.getX();
             yEnd = e.getY();
-            if (xEnd <= bufferedImage.getWidth() && yEnd <= bufferedImage.getHeight()) {
+            if (xEnd- xBegin <= bufferedImage.getWidth() && yEnd- yBegin <= bufferedImage.getHeight()) {
                 paintComponents(piclabel.getGraphics());
             }
 
@@ -230,15 +265,15 @@ public class MainUI extends JFrame {
 
     @Override
     public void paintComponents(Graphics g) {
-      //  super.paintComponents(g);
-        drawRect(g, x, y, xEnd, yEnd);
+        //  super.paintComponents(g);
+        drawRect(g, xBegin, yBegin, xEnd, yEnd);
     }
 
     private void drawRect(Graphics g, int x, int y, int xEnd, int yEnd) {
         Graphics2D g2d = (Graphics2D) g.create();
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setColor(Color.RED);
-        float[] dash = new float[] { 5, 10 };
+        float[] dash = new float[]{5, 10};
         BasicStroke bs2 = new BasicStroke(
                 2,                      // 画笔宽度/线宽
                 BasicStroke.CAP_SQUARE,
@@ -255,6 +290,7 @@ public class MainUI extends JFrame {
 
     /**
      * 设置裁剪区域
+     *
      * @param e
      */
     private void setCutActionPerformed(ActionEvent e) {
@@ -264,21 +300,33 @@ public class MainUI extends JFrame {
 
     /**
      * 显示裁剪区域图片
+     *
      * @param e
      */
     private void cutAreaActionPerformed(ActionEvent e) {
-        bufferedImage = bufferedImage.getSubimage(x, y, Math.abs(xEnd - x), Math.abs(yEnd - y));
-        setPic(bufferedImage);
+        System.out.print("需要的宽:");System.out.println(xEnd - xBegin);
+        System.out.print("需要的高:");
+        System.out.println(yEnd - yBegin);
+        System.out.println("旧图的宽" + previousOperate.peek().getWidth() + "图的高：" + previousOperate.peek().getHeight());
+        BufferedImage bufferedImage2;
+        bufferedImage2 = previousOperate.peek().getSubimage(xBegin, yBegin, Math.abs(xEnd - xBegin), Math.abs(yEnd - yBegin));
+        previousOperate.push(bufferedImage2);
+        System.out.println("新图宽" + bufferedImage2.getWidth() + "高：" + bufferedImage2.getHeight());
+
+        setPic(bufferedImage2);
+        label19.setText("裁剪图片");
+        System.out.println("=======================");
     }
 
     /**
      * 图片另存为
+     *
      * @param e
      */
     private void saveAsActionPerformed(ActionEvent e) {
         try {
             String url2 = FileUtils.openFile();
-            ImageIO.write(bufferedImage, "PNG", new File(url2+".png"));
+            ImageIO.write(previousOperate.peek(), "PNG", new File(url2 + ".png"));
             System.out.println("saveAs SUCCESS");
         } catch (IOException e1) {
             e1.printStackTrace();
@@ -288,11 +336,27 @@ public class MainUI extends JFrame {
 
     /**
      * 撤销操作
+     *  每一次的图像操作完都将对应的bufferimage加入栈顶
      * @param e
      */
     private void withdrawActionPerformed(ActionEvent e) {
-//todo 撤销 初步考虑使用stack
+        if (!previousOperate.isEmpty()) {
+            if (previousOperate.size() != 1) {
+                previousOperate.pop();
+                bufferedImage = previousOperate.pop();
+                setPic(bufferedImage);
+            }else {
+                bufferedImage = previousOperate.peek();
+                setPic(bufferedImage);
+                JOptionPane.showMessageDialog(null, "已经到底啦！", "注意", JOptionPane.ERROR_MESSAGE);
+
+            }
+        }
     }
+
+
+
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -1003,7 +1067,7 @@ public class MainUI extends JFrame {
                             .addGroup(panel3Layout.createParallelGroup()
                                 .addComponent(radioButton1, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(radioButton2))
-                            .addContainerGap(105, Short.MAX_VALUE))
+                            .addContainerGap(109, Short.MAX_VALUE))
                 );
                 panel3Layout.setVerticalGroup(
                     panel3Layout.createParallelGroup()
@@ -1038,7 +1102,7 @@ public class MainUI extends JFrame {
                                 .addComponent(label15, GroupLayout.Alignment.LEADING)
                                 .addComponent(label18, GroupLayout.Alignment.LEADING)
                                 .addComponent(comboBox2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(59, Short.MAX_VALUE))
+                            .addContainerGap(63, Short.MAX_VALUE))
                 );
                 panel4Layout.setVerticalGroup(
                     panel4Layout.createParallelGroup()
@@ -1066,7 +1130,7 @@ public class MainUI extends JFrame {
                             .addComponent(label12, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(label13, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                                 .addComponent(label14, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
                     .addGroup(panel1Layout.createSequentialGroup()
@@ -1173,7 +1237,7 @@ public class MainUI extends JFrame {
             imagePanelLayout.setHorizontalGroup(
                 imagePanelLayout.createParallelGroup()
                     .addGroup(GroupLayout.Alignment.TRAILING, imagePanelLayout.createSequentialGroup()
-                        .addGap(0, 97, Short.MAX_VALUE)
+                        .addGap(0, 93, Short.MAX_VALUE)
                         .addComponent(piclabel, GroupLayout.PREFERRED_SIZE, 664, GroupLayout.PREFERRED_SIZE))
             );
             imagePanelLayout.setVerticalGroup(
