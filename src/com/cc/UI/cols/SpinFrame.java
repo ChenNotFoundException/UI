@@ -32,7 +32,7 @@ public class SpinFrame extends JFrame {
         this.stack = stack;
         this.bufferedImage = bufferedImage;
         this.piclabel = label;
-        this.setLocation(piclabel.getLocation());
+        this.setLocation(piclabel.getLocationOnScreen());
         this.setVisible(true);
     }
 

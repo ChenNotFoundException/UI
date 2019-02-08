@@ -25,6 +25,7 @@ public class BrightnessContrastForm extends JDialog {
         this.image = image;
         temp = image;
         setPic(image);
+        this.setLocation(owner.getLocationOnScreen());
     }
     /**
      * 设置显示图片
@@ -44,6 +45,7 @@ public class BrightnessContrastForm extends JDialog {
         this.image = image;
         temp = image;
         setPic(image);
+        this.setLocation(owner.getLocationOnScreen());
     }
 
     private void slider1StateChanged(ChangeEvent e) {
