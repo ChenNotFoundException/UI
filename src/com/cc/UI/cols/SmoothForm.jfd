@@ -1,0 +1,191 @@
+JFDML JFormDesigner: "6.0.0.0.84" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:95:p, comp button1:::p::p, space :p:44:p, comp button2:::p::p}, seq l {space :::p, comp panel1:::p::p}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp panel1:::p::p, space s:::p, par b {comp button1::b:p::p, comp button2::b:p::p}, space :::x}}"
+		} ) {
+			name: "this"
+			"visible": true
+			"title": "图像平滑模板设置"
+			"resizable": false
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :p:46:p, par l {comp radioButton2:::p::p, comp radioButton1:::p::p, seq l {par t:::p {seq l {comp label1:::p::p, space s:::p, comp textField5:::::x}, comp radioButton3:::p::p, seq t {par l {comp label2::l:p::p, comp label3::l:p::p, comp label4::l:p::p, comp label5::l:p::p}, space :10::x, par l:::p {comp textField9:::::x, comp textField8:::::x, comp textField7:::::x, comp textField6:::p:27:p}}}, space :::p, comp panel2:::p::p}}, space ::61:x}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp radioButton1:::p::p, space :::p, comp radioButton2:::p::p, space :::p, comp radioButton3:::p::p, space :::p, par l {seq {par b {comp label1::b:p::p, comp textField5::b:p::p}, space u:::p, par b {comp label2::b:p::p, comp textField6::b:p::p}, space :p:4:p, par b {comp label3::b:p::p, comp textField7::b:p::p}, space :p:18:p, par b {comp label4::b:p::p, comp textField8::b:p::p}, space u:::p, par b {comp label5::b:p::p, comp textField9::b:p::p}}, comp panel2::l:p::p}, space ::25:x}}"
+			} ) {
+				name: "panel1"
+				"border": new javax.swing.border.TitledBorder( "图像平滑模块" )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton1"
+					"text": "平均模块(3X3)"
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton2"
+					"text": "高斯模块(3X3)"
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton3"
+					"text": "自定义模块(<=5X5)"
+					addEvent( new FormEvent( "javax.swing.event.ChangeListener", "stateChanged", "radioButton3StateChanged", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "模板系数："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "模板宽度："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "模板高度："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "中心元素X坐标："
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "中心元素Y坐标："
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField5"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField6"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField7"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField8"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField9"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :::p, par l {seq l {comp textField10:::p:15:p, space :::p, comp textField11:::p:15:p, space :::p, comp textField12:::p:15:p, space :::p, comp textField13:::p:15:p, space :::p, comp textField14:::p:15:p}, seq l {comp textField15:::p:15:p, space :6:6:p, comp textField16:::p:15:p, space :6:6:p, comp textField17:::p:15:p, space :6:6:p, comp textField18:::p:15:p, space :6:6:p, comp textField19:::p:15:p}, seq l {comp textField20:::p:15:p, space :6:6:p, comp textField21:::p:15:p, space :6:6:p, comp textField22:::p:15:p, space :6:6:p, comp textField23:::p:15:p, space :6:6:p, comp textField24:::p:15:p}, seq l {comp textField25:::p:15:p, space :6:6:p, comp textField26:::p:15:p, space :6:6:p, comp textField27:::p:15:p, space :6:6:p, comp textField28:::p:15:p, space :6:6:p, comp textField29:::p:15:p}, seq l {comp textField30:::p:15:p, space :6:6:p, comp textField31:::p:15:p, space :6:6:p, comp textField32:::p:15:p, space :6:6:p, comp textField33:::p:15:p, space :6:6:p, comp textField34:::p:15:p}}, space ::27:x}}"
+					"$verticalGroup": "par l {seq l {par b {comp textField10::b:p::p, comp textField11::b:p::p, comp textField12::b:p::p, comp textField13::b:p::p, comp textField14::b:p::p}, space :::p, par l {comp textField15:::p::p, comp textField16:::p::p, comp textField17:::p::p, comp textField18:::p::p, comp textField19:::p::p}, space :::p, par l {comp textField20:::p::p, comp textField21:::p::p, comp textField22:::p::p, comp textField23:::p::p, comp textField24:::p::p}, space :::p, par l {comp textField25:::p::p, comp textField26:::p::p, comp textField27:::p::p, comp textField28:::p::p, comp textField29:::p::p}, space u:::p, par l {comp textField30:::p::p, comp textField31:::p::p, comp textField32:::p::p, comp textField33:::p::p, comp textField34:::p::p}, space :0:18:x}}"
+					"honorsVisibility": false
+				} ) {
+					name: "panel2"
+					"border": new javax.swing.border.TitledBorder( "模板元素" )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField10"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField11"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField12"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField13"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField14"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField15"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField16"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField17"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField18"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField19"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField20"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField21"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField22"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField23"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField24"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField25"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField26"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField27"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField28"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField29"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField30"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField31"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField32"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField33"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+					add( new FormComponent( "javax.swing.JTextField" ) {
+						name: "textField34"
+						"preferredSize": new java.awt.Dimension( 21, 21 )
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "确定"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "取消"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "button2ActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 360, 380 )
+		} )
+	}
+}

@@ -145,7 +145,7 @@ new FormModel {
 				} )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {par l {comp label10:::p:60:p, comp label11:::p:72:p}, space :::p, par l {comp label12:::::x, seq {comp label13:::p:45:p, space ::51:x, comp label14:::p:27:p, space :::p}}}, seq {par l {comp label2::l:p:125:p, par t:l::p {comp panel2::l:::x, comp panel3::l:::x, comp panel4::l:p::p}, seq l {par t:::p {comp label3:::::x, comp label5:::::x, seq l {comp label7:::p::p, space :::p}}, par l {comp label4:::p:43:p, comp label6:::p:37:p, seq {comp label8:::p::p, space :0:0:p, comp label9:::::x}}}}, space :p:1:p}, seq l {space :::p, comp comboBox1:::p:67:p, space :::x}, comp separator6::t:::x, seq t {space :::x, comp label1:::p::p, space :p:75:p}}"
+				"$horizontalGroup": "par l {seq l {par l {comp label10:::p:60:p, comp label11:::p:72:p}, space :::p, par l {comp label12:::::x, seq {comp label13:::p:45:p, space ::56:x, comp label14:::p:27:p, space :::p}}}, seq {par l {comp label2::l:p:125:p, par t:l::p {comp panel2::l:::x, comp panel3::l:::x, comp panel4::l:p::p}, seq l {par t:::p {comp label3:::::x, comp label5:::::x, seq l {comp label7:::p::p, space :::p}}, par l {comp label4:::p:43:p, comp label6:::p:37:p, seq {comp label8:::p::p, space :0:0:p, comp label9:::::x}}}}, space :p:1:p}, seq l {space :::p, comp comboBox1:::p:67:p, space :::x}, comp separator6::t:::x, seq t {space :::x, comp label1:::p::p, space :p:75:p}}"
 				"$verticalGroup": "par l {seq {comp label1:::p:22:p, space :::p, comp label2:::p::p, space :::p, comp comboBox1:::p::p, space :::p, par b {comp label3::b:p:30:p, comp label4::b:p::p}, space :::p, par b {comp label5::b:p:30:p, comp label6::b:p::p}, space :::p, par b {comp label8::b:p::p, comp label9::b:p::p, comp label7::b:p:30:p}, space :::p, par b {comp label12::b:p::p, comp label10::b:p::p}, space :::p, par b {comp label13::b:p::p, comp label14::b:p:21:p, comp label11::b:p::p}, space :::p, comp separator6:::p:2:p, space u:::p, comp panel2:::p:80:p, space :p:2:p, comp panel3:::p:72:p, space :::p, comp panel4:::::x, space :::p}}"
 			} ) {
 				name: "panel1"
@@ -254,7 +254,7 @@ new FormModel {
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {par l {comp radioButton1:::p:86:p, comp radioButton2:::p::p}, space ::109:x}}"
+					"$horizontalGroup": "par l {seq {par l {comp radioButton1:::p:86:p, comp radioButton2:::p::p}, space ::114:x}}"
 					"$verticalGroup": "par l {seq l {space :0:0:x, comp radioButton1:::p::p, space :p:2:p, comp radioButton2:::p::p, space :p:92:p}}"
 				} ) {
 					name: "panel3"
@@ -272,7 +272,7 @@ new FormModel {
 					} )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :::p, par t {comp datePicker1::t:p:106:p, comp label15::l:p::p, comp label18::l:p::p, comp comboBox2::l:p:106:p}, space ::63:x}}"
+					"$horizontalGroup": "par l {seq l {space :::p, par t {comp datePicker1::t:p:106:p, comp label15::l:p::p, comp label18::l:p::p, comp comboBox2::l:p:106:p}, space ::68:x}}"
 					"$verticalGroup": "par l {seq l {comp label15:::p::p, space :::p, comp comboBox2:::p::p, space :::p, comp label18:::p::p, space :::x, comp datePicker1:::p::p}}"
 				} ) {
 					name: "panel4"
@@ -295,7 +295,7 @@ new FormModel {
 				} )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space :0:93:x, comp piclabel:::p:664:p}}"
+				"$horizontalGroup": "par l {seq t {space :0:88:x, comp piclabel:::p:664:p}}"
 				"$verticalGroup": "par l {seq l {comp piclabel:::p:485:p, space :0:0:x}}"
 			} ) {
 				name: "imagePanel"
@@ -460,14 +460,17 @@ new FormModel {
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem28"
 						"text": "图像平滑"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem28ActionPerformed", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem29"
 						"text": "中值滤波"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem29ActionPerformed", true ) )
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem30"
 						"text": "亮度/对比度"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "menuItem30ActionPerformed", true ) )
 					} )
 					add( new FormContainer( "javax.swing.JMenu", new FormLayoutManager( class javax.swing.JMenu ) ) {
 						name: "menu10"

@@ -10,6 +10,9 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import com.cc.UI.cols.AF_Form;
+import com.cc.UI.cols.BrightnessContrastForm;
+import com.cc.UI.cols.SmoothForm;
 import com.cc.UI.cols.SpinFrame;
 import com.cc.UI.utils.FileUtils;
 import com.eltima.components.ui.DatePicker;
@@ -24,7 +27,7 @@ import com.jgoodies.forms.factories.*;
  */
 public class MainUI extends JFrame {
     private EditLabel editLabel;
-
+    private SpinFrame spinFrame;
     public MainUI() {
         initComponents();
         this.setResizable(false);
@@ -69,10 +72,10 @@ public class MainUI extends JFrame {
         } finally {
             //
             piclabel.setIcon(background);
-            new SpinFrame(previousOperate, bufferedImage, piclabel);
+            spinFrame = new SpinFrame(previousOperate, bufferedImage, piclabel);
 //            setPic(bufferedImage);
             if (!url.equals("")) {
-                new EditLabel();
+                editLabel = new EditLabel();
 
             }
         }
@@ -84,12 +87,7 @@ public class MainUI extends JFrame {
      * @param e
      */
     private void closePicActionPerformed(ActionEvent e) {
-        piclabel.setIcon(null);
-        bufferedImage = null;
-        editLabel.dispose();
-        previousOperate = null;
-        label19.setText("\u5982\u9700\u5e2e\u52a9\uff0c\u8bf7\u6309F1");
-
+       button3ActionPerformed(e);
     }
 
     /**
@@ -98,11 +96,14 @@ public class MainUI extends JFrame {
      * @param e
      */
     private void button3ActionPerformed(ActionEvent e) {
-        piclabel.setIcon(null);
-        editLabel.dispose();
-        bufferedImage = null;
-        previousOperate = null;
-        label19.setText("\u5982\u9700\u5e2e\u52a9\uff0c\u8bf7\u6309F1");
+        if (checkPic()) {
+            piclabel.setIcon(null);
+            editLabel.dispose();
+            bufferedImage = null;
+            previousOperate = null;
+            spinFrame.dispose();
+            label19.setText("\u5982\u9700\u5e2e\u52a9\uff0c\u8bf7\u6309F1");
+        }
 
     }
 
@@ -197,7 +198,7 @@ public class MainUI extends JFrame {
      */
     private void button2ActionPerformed(ActionEvent e) {
         try {
-            ImageIO.write(bufferedImage, "PNG", new File(url.substring(0, url.length() - 4) + ".png"));
+            ImageIO.write(previousOperate.peek(), "PNG", new File(url.substring(0, url.length() - 4) + ".png"));
             cutPart = false;
             button16.setBackground(null);
             previousOperate = null;
@@ -352,6 +353,50 @@ public class MainUI extends JFrame {
 
             }
         }
+    }
+
+    /**
+     * 检查是否有图片
+     */
+    private boolean checkPic() {
+        if (piclabel.getIcon() instanceof Icon) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /**
+     * 图像处理- 图像平滑处理
+     * @param e
+     */
+    private void menuItem28ActionPerformed(ActionEvent e) {
+        if (checkPic()) {
+            new SmoothForm();
+        }
+        // TODO  图像平滑处理
+    }
+
+    /**
+     * 图像处理- 中值滤波
+     * @param e
+     */
+    private void menuItem29ActionPerformed(ActionEvent e) {
+        if (checkPic()) {
+            new AF_Form(this);
+        }
+        //todo 中值滤波
+    }
+
+    /**
+     * 图像处理- 亮度、对比度调节
+     * @param e
+     */
+    private void menuItem30ActionPerformed(ActionEvent e) {
+        if (checkPic()) {
+            new BrightnessContrastForm(this, previousOperate.peek());
+        }else
+            System.out.println("没有图");
+        //todo 亮度、对比度调节
     }
 
 
@@ -649,14 +694,17 @@ public class MainUI extends JFrame {
 
                 //---- menuItem28 ----
                 menuItem28.setText("\u56fe\u50cf\u5e73\u6ed1");
+                menuItem28.addActionListener(e -> menuItem28ActionPerformed(e));
                 menu3.add(menuItem28);
 
                 //---- menuItem29 ----
                 menuItem29.setText("\u4e2d\u503c\u6ee4\u6ce2");
+                menuItem29.addActionListener(e -> menuItem29ActionPerformed(e));
                 menu3.add(menuItem29);
 
                 //---- menuItem30 ----
                 menuItem30.setText("\u4eae\u5ea6/\u5bf9\u6bd4\u5ea6");
+                menuItem30.addActionListener(e -> menuItem30ActionPerformed(e));
                 menu3.add(menuItem30);
 
                 //======== menu10 ========
@@ -1067,7 +1115,7 @@ public class MainUI extends JFrame {
                             .addGroup(panel3Layout.createParallelGroup()
                                 .addComponent(radioButton1, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(radioButton2))
-                            .addContainerGap(109, Short.MAX_VALUE))
+                            .addContainerGap(114, Short.MAX_VALUE))
                 );
                 panel3Layout.setVerticalGroup(
                     panel3Layout.createParallelGroup()
@@ -1102,7 +1150,7 @@ public class MainUI extends JFrame {
                                 .addComponent(label15, GroupLayout.Alignment.LEADING)
                                 .addComponent(label18, GroupLayout.Alignment.LEADING)
                                 .addComponent(comboBox2, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(63, Short.MAX_VALUE))
+                            .addContainerGap(68, Short.MAX_VALUE))
                 );
                 panel4Layout.setVerticalGroup(
                     panel4Layout.createParallelGroup()
@@ -1130,7 +1178,7 @@ public class MainUI extends JFrame {
                             .addComponent(label12, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addComponent(label13, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                                 .addComponent(label14, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
                     .addGroup(panel1Layout.createSequentialGroup()
@@ -1237,7 +1285,7 @@ public class MainUI extends JFrame {
             imagePanelLayout.setHorizontalGroup(
                 imagePanelLayout.createParallelGroup()
                     .addGroup(GroupLayout.Alignment.TRAILING, imagePanelLayout.createSequentialGroup()
-                        .addGap(0, 93, Short.MAX_VALUE)
+                        .addGap(0, 88, Short.MAX_VALUE)
                         .addComponent(piclabel, GroupLayout.PREFERRED_SIZE, 664, GroupLayout.PREFERRED_SIZE))
             );
             imagePanelLayout.setVerticalGroup(
